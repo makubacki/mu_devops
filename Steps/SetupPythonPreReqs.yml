@@ -24,8 +24,9 @@ steps:
       architecture: x64
 
 - script: |
-    python3 -m venv .venv
-    source .venv/bin/activate
+    python3 -m venv /opt/venv
+    source /opt/venv/bin/activate
+    ENV PATH="/opt/venv/bin:$PATH"
   displayName: Setup Python Virtual Environment (Linux)
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
