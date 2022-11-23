@@ -22,116 +22,116 @@
 
 - name: complexity:advanced
   description: Requires substantial background information and effort to accomplish
-  color: d35400
+  color: 'd35400'
   aliases: []
 - name: complexity:easy
   description: Requires minimal background information and effort to accomplish
-  color: 229954
+  color: '229954'
   aliases: []
 - name: complexity:good-first-issue
   description: Good for newcomers
-  color: 7057ff
+  color: '7057ff'
   aliases: []
 - name: complexity:intermediate
   description: Requires intermediate background information and effort to accomplish
-  color: d4ac0d
+  color: 'd4ac0d'
   aliases: []
 
 - name: impact:breaking-change
   description: Requires integration attention
-  color: a54418
+  color: 'a54418'
   aliases: []
 - name: impact:non-functional
   description: Does not have a functional impact
-  color: c2e0c6
+  color: 'c2e0c6'
   aliases: []
 - name: impact:security
   description: Has a security impact
-  color: 31df8c
+  color: '31df8c'
   aliases: []
 - name: impact:testing
   description: Affects testing
-  color: d4c5f9
+  color: 'd4c5f9'
   aliases: []
 
 - name: state:backlog
   description: In the backlog
-  color: e6e8d3
+  color: 'e6e8d3'
   aliases: []
 - name: state:duplicate
   description: This issue or pull request already exists
-  color: cfd3d7
+  color: 'cfd3d7'
   aliases: []
 - name: state:help-wanted
   description: Extra attention (collaborator) is needed
-  color: 008672
+  color: '008672'
   aliases: []
 - name: state:invalid
   description: This doesn't seem right
-  color: e4e669
+  color: 'e4e669'
   aliases: []
 - name: state:needs-maintainer-feedback
   description: Needs more information from a maintainer to determine next steps
-  color: e7a540
+  color: 'e7a540'
   aliases: []
 - name: state:needs-owner
   description: Needs an issue owner to be assigned
-  color: f9e79f
+  color: 'f9e79f'
   aliases: []
 - name: state:needs-submitter-info
   description: Needs more information from the submitter to determine next steps
-  color: fcf3cf
+  color: 'fcf3cf'
   aliases: []
 - name: state:needs-triage
   description: Needs to triaged to determine next steps
-  color: f1c40f
+  color: 'f1c40f'
   aliases: []
 - name: state:stale
   description: Has not been updated in a long time
-  color: c0da14
+  color: 'c0da14'
   aliases: []
 - name: state:under-discussion
   description: Under discussion
-  color: c5def5
+  color: 'c5def5'
   aliases: []
 - name: state:wont-fix
   description: This will not be worked on
-  color: ffffff
+  color: 'ffffff'
   aliases: []
 
 - name: type:bug
   description: Something isn't working
-  color: d73a4a
+  color: 'd73a4a'
   aliases: []
 - name: type:dependencies
   description: Pull requests that update a dependency file
-  color: 0366d6
+  color: '0366d6'
   aliases: []
 - name: type:design-change
   description: A new proposal or modification to a feature design
-  color: 5b2c6f
+  color: '5b2c6f'
   aliases: []
 - name: type:documentation
   description: Improvements or additions to documentation
-  color: 0075ca
+  color: '0075ca'
   aliases: []
 - name: type:enhancement
   description: New feature or pull request
-  color: a2eeef
+  color: 'a2eeef'
   aliases: []
 - name: type:feature-request
   description: A new feature proposal
-  color: a9dfbf
+  color: 'a9dfbf'
   aliases: []
 - name: type:notes
   description: Notes from an organized meeting
-  color: d9ee5d
+  color: 'd9ee5d'
   aliases: []
 - name: type:submodules
   description: Pull requests that update submodules
-  color: 000000
+  color: '000000'
   aliases: []
 - name: type:question
   description: Further information is requested
-  color: d876e3
+  color: 'd876e3'
   aliases: []

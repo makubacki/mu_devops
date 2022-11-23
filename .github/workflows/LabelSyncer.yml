@@ -30,7 +30,7 @@ jobs:
         uses: EndBug/label-sync@v2
         with:
           config-file: |
-            https://raw.githubusercontent.com/makubacki/mu_devops/dd_common_label_sync_workflow_testing/.github/Labels.yml
+            https://raw.githubusercontent.com/makubacki/mu_devops/add_common_label_sync_workflow_testing/.github/Labels.yml
             ${{ inputs.local_config_file }}
 
           delete-other-labels: false
