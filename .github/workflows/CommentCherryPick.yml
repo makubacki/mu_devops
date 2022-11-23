@@ -1,0 +1,39 @@
+# This is a reusable workflow that contains common logic for cherry-picking changes
+# in a PR based on a comment to cherry-pick.
+#
+# In Project Mu, this is useful for easily cherry-picking changes back to older release
+# branches that also need the changes.
+#
+# The changes will not be cherry-picked until the PR is squashed and merged.
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+# For more information, see:
+# https://github.com/vendoo/gha-cherry-pick
+
+name: Cherry Pick On Comment
+
+on:
+  workflow_call:
+
+jobs:
+  cherry-pick:
+    name: Cherry Pick
+    if: |
+      github.event.issue.pull_request != '' &&
+      (github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER') &&
+      contains(github.event.comment.body, '/auto-cherry-pick')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+
+      - name: Automatic Cherry Pick
+        uses: vendoo/gha-cherry-pick@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
