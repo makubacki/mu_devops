@@ -36,21 +36,20 @@ group:
     - source: .sync/azure_pipelines/Windows-VS.yml
       dest: .azurepipelines/Windows-VS.yml
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_devops
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
 
 
 # CI Configuration - Markdown Lint
@@ -58,68 +57,65 @@ group:
     - source: .sync/ci_config/.markdownlint.yaml
       dest: .markdownlint.yaml
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_devops
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
 
 # dependabot - Track GitHub Actions and PIP Modules
   - files:
     - source: .sync/dependabot/actions-pip.yml
       dest: .github/dependabot.yml
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_devops
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_plus
 
 # dependabot - Track GitHub Actions, PIP Modules, and Git Submodules
   - files:
     - source: .sync/dependabot/actions-pip-submodules.yml
       dest: .github/dependabot.yml
     repos: |
-      microsoft/mu_crypto_release
-      microsoft/mu_tiano_platforms
+      makubacki/mu_tiano_platforms
 
 # GitHub Templates - Contributing
   - files:
     - source: .sync/github_templates/contributing/CONTRIBUTING.md
       dest: CONTRIBUTING.md
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
 
 # GitHub Templates - Issues
 #
@@ -128,78 +124,74 @@ group:
     - source: .sync/github_templates/ISSUE_TEMPLATE/
       dest: .github/ISSUE_TEMPLATE/
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
 
 # Leaf Workflow - Label Sync
   - files:
     - source: .sync/workflows/leaf/label-sync.yml
       dest: .github/workflows/label-sync.yml
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_devops
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
 
 # Leaf Workflow - Mark Stale Issues and Pull Requests
   - files:
     - source: .sync/workflows/leaf/stale.yml
       dest: .github/workflows/stale.yml
     repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_devops
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
 
 # Pull Request Template - Common Template
   - files:
     - source: .sync/github_templates/pull_requests/pull_request_template.md
       dest: pull_request_template.md
     repos: |
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_siicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+      makubacki/mu_basecore
+      makubacki/mu_common_intel_min_platform
+      makubacki/mu_feature_config
+      makubacki/mu_feature_ipmi
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_feature_uefi_variable
+      makubacki/mu_oem_sample
+      makubacki/mu_plus
+      makubacki/mu_silicon_arm_tiano
+      makubacki/mu_silicon_intel_tiano
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
