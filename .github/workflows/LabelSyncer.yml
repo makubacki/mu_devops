@@ -11,12 +11,12 @@
 name: Mu DevOps Git Label Sync Workflow
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
+      - add_common_label_sync_workflow_init_in_devops_testing
     paths:
       - .github/Labels.yml
-  workflow_dispatch:
 
 jobs:
   sync:
@@ -32,4 +32,5 @@ jobs:
         with:
           manifest: .github/Labels.yml
           repository: |
-            microsoft/mu_basecore
+            makubacki/mu_basecore
+          token: ${{ secrets.MAKUBACKI_MU_BASECORE }}
