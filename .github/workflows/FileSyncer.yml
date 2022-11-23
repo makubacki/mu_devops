@@ -30,14 +30,17 @@ jobs:
       - name: Run GitHub File Sync
         uses: BetaHuhn/repo-file-sync-action@v1
         with:
-          COMMIT_BODY: "Signed-off-by: Project Mu UEFI Bot <uefibot@microsoft.com>"
+          COMMIT_BODY: "Signed-off-by: Michael Kubacki <michael.kubacki@microsoft.com>"
+          COMMIT_EACH_FILE: true
           COMMIT_PREFIX: "Repo File Sync:"
           CONFIG_PATH: .sync/Files.yml
-          FORK: true
-          GH_PAT: ${{ secrets.UEFI_BOT_REPO_FILE_SYNC }}
-          GIT_EMAIL: uefibot@microsoft.com
-          GIT_USERNAME: uefibot
+          DRY_RUN: true
+          FORK: false
+          GH_PAT: ${{ secrets.MAKUBACKI_REPO_FILE_SYNC }}
+          GIT_EMAIL: michael.kubacki@microsoft.com
+          GIT_USERNAME: makubacki
           OVERWRITE_EXISTING_PR: true
           PR_LABELS: type:file-sync
-          TEAM_REVIEWERS: project-mu-dependency-reviewers
+          SKIP_PR: false
+          # TEAM_REVIEWERS: project-mu-dependency-reviewers
 

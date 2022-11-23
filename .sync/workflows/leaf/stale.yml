@@ -24,4 +24,4 @@ on:
 
 jobs:
   check:
-    uses: microsoft/mu_devops/Workflows/Stale.yml@main
+    uses: makubacki/mu_devops/Workflows/Stale.yml@add_file_sync_workflow_fork_testing

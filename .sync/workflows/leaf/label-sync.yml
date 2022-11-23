@@ -24,4 +24,4 @@ on:
 
 jobs:
   sync:
-    uses: microsoft/mu_devops/Workflows/LabelSyncer.yml@main
+    uses: makubacki/mu_devops/Workflows/LabelSyncer.yml@add_file_sync_workflow_fork_testing
