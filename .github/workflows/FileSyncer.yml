@@ -31,7 +31,7 @@ jobs:
         uses: BetaHuhn/repo-file-sync-action@v1
         with:
           COMMIT_BODY: "Signed-off-by: Michael Kubacki <michael.kubacki@microsoft.com>"
-          COMMIT_EACH_FILE: true
+          COMMIT_EACH_FILE: false
           COMMIT_PREFIX: "Repo File Sync:"
           CONFIG_PATH: .sync/Files.yml
           DRY_RUN: false
