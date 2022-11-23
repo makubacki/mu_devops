@@ -38,19 +38,10 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
-      makubacki/mu_devops
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
-
 
 # CI Configuration - Markdown Lint
   - files:
@@ -59,16 +50,9 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
       makubacki/mu_devops
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
@@ -79,16 +63,9 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
       makubacki/mu_devops
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_plus
 
 # dependabot - Track GitHub Actions, PIP Modules, and Git Submodules
@@ -105,15 +82,8 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
@@ -126,15 +96,8 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
@@ -145,16 +108,9 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
       makubacki/mu_devops
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
@@ -165,16 +121,9 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
       makubacki/mu_devops
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
@@ -184,14 +133,7 @@ group:
       dest: pull_request_template.md
     repos: |
       makubacki/mu_basecore
-      makubacki/mu_common_intel_min_platform
-      makubacki/mu_feature_config
-      makubacki/mu_feature_ipmi
       makubacki/mu_feature_mm_supv
-      makubacki/mu_feature_uefi_variable
-      makubacki/mu_oem_sample
       makubacki/mu_plus
-      makubacki/mu_silicon_arm_tiano
-      makubacki/mu_silicon_intel_tiano
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
