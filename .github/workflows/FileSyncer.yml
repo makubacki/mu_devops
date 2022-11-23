@@ -34,7 +34,7 @@ jobs:
           COMMIT_EACH_FILE: true
           COMMIT_PREFIX: "Repo File Sync:"
           CONFIG_PATH: .sync/Files.yml
-          DRY_RUN: true
+          DRY_RUN: false
           FORK: false
           GH_PAT: ${{ secrets.MAKUBACKI_REPO_FILE_SYNC }}
           GIT_EMAIL: michael.kubacki@microsoft.com
