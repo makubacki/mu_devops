@@ -32,12 +32,12 @@ jobs:
       - name: Download Pull Request RegEx Label Config File
         run: curl -LJ https://raw.githubusercontent.com/makubacki/mu_devops/add_file_sync_workflow_fork_testing/.github/RegExLabelsPullRequests.yml > $RUNNER_TEMP/RegExLabelsPullRequests.yml
 
-      - name: Apply Labels Based on PR File Paths
-        uses: actions/labeler@v4
-        with:
-          configuration-path: $RUNNER_TEMP/FilePathLabels.yml
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          sync-labels: true
+      # - name: Apply Labels Based on PR File Paths
+      #   uses: actions/labeler@v4
+      #   with:
+      #     configuration-path: $RUNNER_TEMP/FilePathLabels.yml
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     sync-labels: true
 
       # Note: This will automatically search for files with a version based on the version found in issue files.
       #       Example: If an issue contains `issue_labeler_regex_version=2`. This will look for the configuration
