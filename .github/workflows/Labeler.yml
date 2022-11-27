@@ -36,6 +36,7 @@ jobs:
         uses: actions/labeler@v4
         with:
           configuration-path: $RUNNER_TEMP/FilePathLabels.yml
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
 
       # Note: This will automatically search for files with a version based on the version found in issue files.
@@ -46,6 +47,7 @@ jobs:
         with:
           configuration-path: $RUNNER_TEMP/RegExLabelsIssues.yml
           enable-versioned-regex: 1
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           versioned-regex: 'issue_labeler_regex_version=(\d+)'
 
       - name: Apply Labels Based on PR Messages
@@ -53,3 +55,4 @@ jobs:
         with:
           configuration-path: $RUNNER_TEMP/RegExLabelsPullRequests.yml
           enable-versioned-regex: 0
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
