@@ -106,11 +106,11 @@ group:
     - source: .sync/workflows/leaf/label.yml
       dest: .github/workflows/label.yml
     - source: .sync/workflows/config/file-path-labels.yml
-      dest: .github/workflows/file-path-labels.yml
+      dest: .github/file-path-labels.yml
     - source: .sync/workflows/config/reg-ex-labels-issues-v1.yml
-      dest: .github/workflows/reg-ex-labels-issues-v1.yml
+      dest: .github/reg-ex-labels-issues-v1.yml
     - source: .sync/workflows/config/reg-ex-labels-pull-requests.yml
-      dest: .github/workflows/reg-ex-labels-pull-requests.yml
+      dest: .github/reg-ex-labels-pull-requests.yml
     repos: |
       makubacki/mu
       makubacki/mu_basecore
