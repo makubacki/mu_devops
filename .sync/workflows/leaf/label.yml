@@ -24,5 +24,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
+  apply:
     uses: makubacki/mu_devops/.github/workflows/Labeler.yml@add_file_sync_workflow_fork_testing
