@@ -6,6 +6,9 @@
 # - Mu DevOps Repo: https://github.com/microsoft/mu_devops
 # - File Sync Settings: https://github.com/microsoft/mu_devops/blob/main/.sync/Files.yml
 #
+# Do not modify the below line unless intentionally changing the version:
+#   issue_labeler_regex_version=1
+#
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 #

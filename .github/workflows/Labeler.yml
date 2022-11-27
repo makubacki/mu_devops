@@ -1,0 +1,55 @@
+# This workflow automatically applies labels to issues and pull requests
+# based on regular expression matches against the content in the issue
+# or pull request or file path pattern matches.
+#
+# The labels are declaratively defined in the following configuration files:
+#   - File Path Patterns: .github/FilePathLabels.yml.
+#   - Regular Expressions: .github/RegExLabels.yml.
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+# For more information, see:
+# https://github.com/github/issue-labeler
+
+name: Apply Labels Based on Message Content
+
+on:
+  workflow_call:
+
+jobs:
+  sync:
+    name: Label Based on Messages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download File Path Label Config File
+        run: curl -LJ https://raw.githubusercontent.com/makubacki/mu_devops/add_file_sync_workflow_fork_testing/.github/FilePathLabels.yml > $RUNNER_TEMP/FilePathLabels.yml
+
+      - name: Download Issue RegEx Label Config File
+        run: curl -LJ https://raw.githubusercontent.com/makubacki/mu_devops/add_file_sync_workflow_fork_testing/.github/RegExLabelsIssues.yml > $RUNNER_TEMP/RegExLabelsIssues.yml
+
+      - name: Download Pull Request RegEx Label Config File
+        run: curl -LJ https://raw.githubusercontent.com/makubacki/mu_devops/add_file_sync_workflow_fork_testing/.github/RegExLabelsPullRequests.yml > $RUNNER_TEMP/RegExLabelsPullRequests.yml
+
+      - name: Apply Labels Based on PR File Paths
+        uses: actions/labeler@v4
+        with:
+          configuration-path: $RUNNER_TEMP/FilePathLabels.yml
+          sync-labels: true
+
+      # Note: This will automatically search for files with a version based on the version found in issue files.
+      #       Example: If an issue contains `issue_labeler_regex_version=2`. This will look for the configuration
+      #                file `RegExLabelsIssues-v2.yml`.
+      - name: Apply Labels Based on Issue Messages
+        uses: github/issue-labeler@v2.5
+        with:
+          configuration-path: $RUNNER_TEMP/RegExLabelsIssues.yml
+          enable-versioned-regex: 1
+          versioned-regex: 'issue_labeler_regex_version=(\d+)'
+
+      - name: Apply Labels Based on PR Messages
+        uses: github/issue-labeler@v2.5
+        with:
+          configuration-path: $RUNNER_TEMP/RegExLabelsPullRequests.yml
+          enable-versioned-regex: 0
