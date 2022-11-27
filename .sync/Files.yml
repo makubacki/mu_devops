@@ -101,6 +101,19 @@ group:
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
+# Leaf Workflow - Label Application
+  - files:
+    - source: .sync/workflows/leaf/label.yml
+      dest: .github/workflows/label.yml
+    repos: |
+      makubacki/mu
+      makubacki/mu_basecore
+      makubacki/mu_devops
+      makubacki/mu_feature_mm_supv
+      makubacki/mu_plus
+      makubacki/mu_tiano_platforms
+      makubacki/mu_tiano_plus
+
 # Leaf Workflow - Label Sync
   - files:
     - source: .sync/workflows/leaf/label-sync.yml
