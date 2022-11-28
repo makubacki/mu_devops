@@ -18,9 +18,15 @@ name: Apply Issue and PR Labels
 
 on:
   issues:
-    types: [opened, edited]
-  pull_request:
-    types: [opened, edited]
+    types:
+      - edited
+      - opened
+  pull_request_target:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
   workflow_dispatch:
 
 jobs:

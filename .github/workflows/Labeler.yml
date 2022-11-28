@@ -3,14 +3,14 @@
 # or pull request or file path pattern matches.
 #
 # The labels are declaratively defined in the following configuration files:
-#   - File Path Patterns: .sync/workflows/config/file-path-labels.yml
-#   - Regular Expressions for Issues: .sync/workflows/config/reg-ex-labels-issues-v1.yml
-#   - Regular Expressions for Pull Requests: .sync/workflows/config/reg-ex-labels-pull-requests.yml
+#   - File Path Patterns: .sync/workflows/config/label-issues/file-paths.yml
+#   - Regular Expressions for Issues: .sync/workflows/config/label-issues/regex-issues-v1.yml
+#   - Regular Expressions for Pull Requests: .sync/workflows/config/label-issues/regex-pull-requests.yml
 #
 # These will be mapped to the following directories in repos that use this reusable workflow:
-#   - File Path Patterns: .github/file-path-labels.yml
-#   - Regular Expressions for Issues: .github/reg-ex-labels-issues-v1.yml
-#   - Regular Expressions for Pull Requests: .github/reg-ex-labels-pull-requests.yml
+#   - File Path Patterns: .github/workflows/label-issues/file-paths.yml
+#   - Regular Expressions for Issues: .github/workflows/label-issues/regex-issues-v1.yml
+#   - Regular Expressions for Pull Requests: .github/workflows/label-issues/regex-pull-requests.yml
 #
 # Ideally, curl (or wget) could be used to grab the files from mu_devops in this workflow file and once on
 # the local runner, the file path could simply be passed to the actions. That is not currently possible as
@@ -37,7 +37,7 @@ jobs:
       - name: Apply Labels Based on PR File Paths
         uses: actions/labeler@v4
         with:
-          configuration-path: .github/file-path-labels.yml
+          configuration-path: .github/workflows/label-issues/file-paths.yml
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
 
@@ -47,7 +47,7 @@ jobs:
       - name: Apply Labels Based on Issue Messages
         uses: github/issue-labeler@v2.5
         with:
-          configuration-path: .github/reg-ex-labels-issues-v1.yml
+          configuration-path: .github/workflows/label-issues/regex-issues-v1.yml
           enable-versioned-regex: 1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           versioned-regex: 'issue_labeler_regex_version=(\d+)'
@@ -55,6 +55,6 @@ jobs:
       - name: Apply Labels Based on PR Messages
         uses: github/issue-labeler@v2.5
         with:
-          configuration-path: .github/reg-ex-labels-pull-requests.yml
+          configuration-path: .github/workflows/label-issues/regex-pull-requests.yml
           enable-versioned-regex: 0
           repo-token: ${{ secrets.GITHUB_TOKEN }}
