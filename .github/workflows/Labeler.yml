@@ -4,12 +4,10 @@
 #
 # The labels are declaratively defined in the following configuration files:
 #   - File Path Patterns: .sync/workflows/config/label-issues/file-paths.yml
-#   - Regular Expressions for Issues: .sync/workflows/config/label-issues/regex-issues-v1.yml
 #   - Regular Expressions for Pull Requests: .sync/workflows/config/label-issues/regex-pull-requests.yml
 #
 # These will be mapped to the following directories in repos that use this reusable workflow:
 #   - File Path Patterns: .github/workflows/label-issues/file-paths.yml
-#   - Regular Expressions for Issues: .github/workflows/label-issues/regex-issues-v1.yml
 #   - Regular Expressions for Pull Requests: .github/workflows/label-issues/regex-pull-requests.yml
 #
 # Ideally, curl (or wget) could be used to grab the files from mu_devops in this workflow file and once on
@@ -40,17 +38,6 @@ jobs:
           configuration-path: .github/workflows/label-issues/file-paths.yml
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
-
-      # Note: This will automatically search for files with a version based on the version found in issue files.
-      #       Example: If an issue contains `issue_labeler_regex_version=2`. This will look for the configuration
-      #                file `reg-ex-labels-issues-v2.yml`.
-      - name: Apply Labels Based on Issue Messages
-        uses: github/issue-labeler@v2.5
-        with:
-          configuration-path: .github/workflows/label-issues/regex-issues-v1.yml
-          enable-versioned-regex: 1
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          versioned-regex: 'issue_labeler_regex_version=(\d+)'
 
       - name: Apply Labels Based on PR Messages
         uses: github/issue-labeler@v2.5

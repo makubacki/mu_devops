@@ -107,8 +107,6 @@ group:
       dest: .github/workflows/label-issues.yml
     - source: .sync/workflows/config/label-issues/file-paths.yml
       dest: .github/workflows/label-issues/file-paths.yml
-    - source: .sync/workflows/config/label-issues/regex-issues-v1.yml
-      dest: .github/workflows/label-issues/regex-issues-v1.yml
     - source: .sync/workflows/config/label-issues/regex-pull-requests.yml
       dest: .github/workflows/label-issues/regex-pull-requests.yml
     repos: |
