@@ -138,11 +138,19 @@ group:
     repos: |
       makubacki/mu
       makubacki/mu_basecore
-      makubacki/mu_devops
       makubacki/mu_feature_mm_supv
       makubacki/mu_plus
       makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
+
+# Leaf Workflow - Mark Stale Issues and Pull Requests (Mu DevOps Adjustment)
+# Prevents the reusable workflow file from being overwritten by the leaf workflow
+# file in Mu DevOps.
+  - files:
+    - source: .sync/workflows/leaf/stale.yml
+      dest: .github/workflows/stale-leaf.yml
+    repos: |
+      makubacki/mu_devops
 
 # Pull Request Template - Common Template
   - files:
