@@ -12,7 +12,7 @@ name: Sync Mu DevOps Files to Mu Repos
 on:
   push:
     branches:
-      - main
+      - add_file_sync_testing
     paths:
       - '.github/workflows/FileSyncer.yml'
       - '.sync/**'
