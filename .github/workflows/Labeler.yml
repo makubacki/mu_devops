@@ -39,7 +39,7 @@ jobs:
           configuration-path: .github/workflows/label-issues/file-paths.yml
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
 
       - name: Apply Labels Based on PR Messages
         uses: github/issue-labeler@v2.5
@@ -47,4 +47,4 @@ jobs:
           configuration-path: .github/workflows/label-issues/regex-pull-requests.yml
           enable-versioned-regex: 0
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
