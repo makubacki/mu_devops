@@ -37,10 +37,6 @@ group:
     - source: .sync/azure_pipelines/Windows-VS.yml
       dest: .azurepipelines/Windows-VS.yml
     repos: |
-      makubacki/mu_basecore
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
 # CI Configuration - Markdown Lint
@@ -48,12 +44,6 @@ group:
     - source: .sync/ci_config/.markdownlint.yaml
       dest: .markdownlint.yaml
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_devops
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
 # dependabot - Track GitHub Actions and PIP Modules
@@ -61,30 +51,20 @@ group:
     - source: .sync/dependabot/actions-pip.yml
       dest: .github/dependabot.yml
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_devops
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
       makubacki/mu_tiano_plus
 
-# dependabot - Track GitHub Actions, PIP Modules, and Git Submodules
-  - files:
-    - source: .sync/dependabot/actions-pip-submodules.yml
-      dest: .github/dependabot.yml
-    repos: |
-      makubacki/mu_tiano_platforms
+# # dependabot - Track GitHub Actions, PIP Modules, and Git Submodules
+#   - files:
+#     - source: .sync/dependabot/actions-pip-submodules.yml
+#       dest: .github/dependabot.yml
+#     repos: |
+#       makubacki/mu_tiano_platforms
 
 # GitHub Templates - Contributing
   - files:
     - source: .sync/github_templates/contributing/CONTRIBUTING.md
       dest: CONTRIBUTING.md
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
 # GitHub Templates - Issues
@@ -94,11 +74,6 @@ group:
     - source: .sync/github_templates/ISSUE_TEMPLATE/
       dest: .github/ISSUE_TEMPLATE/
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
 # Leaf Workflow - Apply Labels
@@ -110,12 +85,6 @@ group:
     - source: .sync/workflows/config/label-issues/regex-pull-requests.yml
       dest: .github/workflows/label-issues/regex-pull-requests.yml
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_devops
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
 # Leaf Workflow - Label Sync
@@ -123,12 +92,6 @@ group:
     - source: .sync/workflows/leaf/label-sync.yml
       dest: .github/workflows/label-sync.yml
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_devops
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
 # Leaf Workflow - Mark Stale Issues and Pull Requests
@@ -136,29 +99,20 @@ group:
     - source: .sync/workflows/leaf/stale.yml
       dest: .github/workflows/stale.yml
     repos: |
-      makubacki/mu
-      makubacki/mu_basecore
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
 
-# Leaf Workflow - Mark Stale Issues and Pull Requests (Mu DevOps Adjustment)
-# Prevents the reusable workflow file from being overwritten by the leaf workflow
-# file in Mu DevOps.
-  - files:
-    - source: .sync/workflows/leaf/stale.yml
-      dest: .github/workflows/stale-leaf.yml
-    repos: |
-      makubacki/mu_devops
+# # Leaf Workflow - Mark Stale Issues and Pull Requests (Mu DevOps Adjustment)
+# # Prevents the reusable workflow file from being overwritten by the leaf workflow
+# # file in Mu DevOps.
+#   - files:
+#     - source: .sync/workflows/leaf/stale.yml
+#       dest: .github/workflows/stale-leaf.yml
+#     repos: |
+#       makubacki/mu_devops
 
 # Pull Request Template - Common Template
   - files:
     - source: .sync/github_templates/pull_requests/pull_request_template.md
       dest: .github/pull_request_template.md
     repos: |
-      makubacki/mu_basecore
-      makubacki/mu_feature_mm_supv
-      makubacki/mu_plus
-      makubacki/mu_tiano_platforms
       makubacki/mu_tiano_plus
