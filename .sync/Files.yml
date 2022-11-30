@@ -43,8 +43,22 @@ group:
   - files:
     - source: .sync/ci_config/.markdownlint.yaml
       dest: .markdownlint.yaml
+      template:
+        allowed_elements:
+          - br
+          - center
+          - img
     repos: |
       makubacki/mu_tiano_plus
+
+  - files:
+    - source: .sync/ci_config/.markdownlint.yaml
+      dest: .markdownlint.yaml
+      template:
+        allowed_elements:
+          - br
+    repos: |
+      makubacki/mu_plus
 
 # dependabot - Track GitHub Actions and PIP Modules
   - files:
