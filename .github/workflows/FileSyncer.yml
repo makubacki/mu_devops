@@ -45,5 +45,5 @@ jobs:
           PR_BODY: |
             🤖: View the [Repo File Sync Configuration File](https://github.com/microsoft/mu_devops/blob/main/.sync/Files.yml) to see how files are synced.
           PR_LABELS: type:file-sync
-          REVIEWERS: project-mu-dependency-reviewers
+          REVIEWERS: makubacki
           SKIP_PR: false
