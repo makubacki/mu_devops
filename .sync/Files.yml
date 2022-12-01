@@ -36,6 +36,7 @@ group:
       dest: .azurepipelines/Windows-CLANGPDB.yml
     - source: .sync/azure_pipelines/Windows-VS.yml
       dest: .azurepipelines/Windows-VS.yml
+      template: true
     repos: |
       makubacki/mu_tiano_plus
 
