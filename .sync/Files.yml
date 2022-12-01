@@ -30,10 +30,13 @@ group:
   - files:
     - source: .sync/azure_pipelines/Ubuntu-CLANGPDB.yml
       dest: .azurepipelines/Ubuntu-CLANGPDB.yml
+      template: true
     - source: .sync/azure_pipelines/Ubuntu-GCC5.yml
       dest: .azurepipelines/Ubuntu-GCC5.yml
+      template: true
     - source: .sync/azure_pipelines/Windows-CLANGPDB.yml
       dest: .azurepipelines/Windows-CLANGPDB.yml
+      template: true
     - source: .sync/azure_pipelines/Windows-VS.yml
       dest: .azurepipelines/Windows-VS.yml
       template: true
