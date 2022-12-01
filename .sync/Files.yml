@@ -27,21 +27,88 @@
 #       set up to use the YAML file. The file is simply available for pipelines to be connected
 #       if needed.
 group:
+# Azure Pipelines - Custom - makubacki/mu_feature_config
+  # - files:
+  #   - source: .sync/azure_pipelines/custom/mu_feature_config/Ubuntu-GCC5.yml
+  #     dest: .azurepipelines/Ubuntu-GCC5.yml
+  #     template: true
+  #   - source: .sync/azure_pipelines/custom/mu_feature_config/Windows-VS.yml
+  #     dest: .azurepipelines/Windows-VS.yml
+  #     template: true
+  #   repos: |
+  #     makubacki/mu_feature_config
+
+# Azure Pipelines - Custom - makubacki/mu_feature_ipmi
+  # - files:
+  #   - source: .sync/azure_pipelines/custom/mu_feature_ipmi/Ubuntu-GCC5.yml
+  #     dest: .azurepipelines/Ubuntu-GCC5.yml
+  #     template: true
+  #   - source: .sync/azure_pipelines/custom/mu_feature_ipmi/Windows-VS.yml
+  #     dest: .azurepipelines/Windows-VS.yml
+  #     template: true
+  #   repos: |
+  #     makubacki/mu_feature_ipmi
+
+# Azure Pipelines - Custom - makubacki/mu_feature_mm_supv
   - files:
-    - source: .sync/azure_pipelines/Ubuntu-CLANGPDB.yml
-      dest: .azurepipelines/Ubuntu-CLANGPDB.yml
-      template: true
-    - source: .sync/azure_pipelines/Ubuntu-GCC5.yml
+    - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Ubuntu-GCC5.yml
       dest: .azurepipelines/Ubuntu-GCC5.yml
       template: true
-    - source: .sync/azure_pipelines/Windows-CLANGPDB.yml
+    - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Windows-VS.yml
+      dest: .azurepipelines/Windows-VS.yml
+      template: true
+    repos: |
+      makubacki/mu_feature_mm_supv
+
+# Azure Pipelines - Custom - makubacki/mu_oem_sample
+  # - files:
+  #   - source: .sync/azure_pipelines/custom/mu_oem_sample/Ubuntu-GCC5.yml
+  #     dest: .azurepipelines/Ubuntu-GCC5.yml
+  #     template: true
+  #   - source: .sync/azure_pipelines/custom/mu_oem_sample/Windows-VS.yml
+  #     dest: .azurepipelines/Windows-VS.yml
+  #     template: true
+  #   repos: |
+  #     makubacki/mu_oem_sample
+
+# Azure Pipelines - Custom - makubacki/mu_tiano_platforms
+  - files:
+    - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Ubuntu-GCC5.yml
+      dest: .azurepipelines/Ubuntu-GCC5.yml
+      template: true
+    - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Windows-VS.yml
+      dest: .azurepipelines/Windows-VS.yml
+      template: true
+    repos: |
+      makubacki/mu_tiano_platforms
+
+# Azure Pipelines - Matrix Dependent - All
+  - files:
+    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-CLANGPDB.yml
+      dest: .azurepipelines/Ubuntu-CLANGPDB.yml
+      template: true
+    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
+      dest: .azurepipelines/Ubuntu-GCC5.yml
+      template: true
+    - source: .sync/azure_pipelines/matrix_dependent/Windows-CLANGPDB.yml
       dest: .azurepipelines/Windows-CLANGPDB.yml
       template: true
-    - source: .sync/azure_pipelines/Windows-VS.yml
+    - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
       dest: .azurepipelines/Windows-VS.yml
       template: true
     repos: |
       makubacki/mu_tiano_plus
+
+# Azure Pipelines - Matrix Dependent - GCC & VS Only
+  - files:
+    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
+      dest: .azurepipelines/Ubuntu-GCC5.yml
+      template: true
+    - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
+      dest: .azurepipelines/Windows-VS.yml
+      template: true
+    repos: |
+      makubacki/mu_plus
 
 # CI Configuration - Markdown Lint
   - files:
@@ -98,6 +165,7 @@ group:
   - files:
     - source: .sync/workflows/leaf/label-issues.yml
       dest: .github/workflows/label-issues.yml
+      template: true
     - source: .sync/workflows/config/label-issues/file-paths.yml
       dest: .github/workflows/label-issues/file-paths.yml
     - source: .sync/workflows/config/label-issues/regex-pull-requests.yml
@@ -109,6 +177,7 @@ group:
   - files:
     - source: .sync/workflows/leaf/label-sync.yml
       dest: .github/workflows/label-sync.yml
+      template: true
     repos: |
       makubacki/mu_tiano_plus
 
@@ -116,6 +185,7 @@ group:
   - files:
     - source: .sync/workflows/leaf/stale.yml
       dest: .github/workflows/stale.yml
+      template: true
     repos: |
       makubacki/mu_tiano_plus
 

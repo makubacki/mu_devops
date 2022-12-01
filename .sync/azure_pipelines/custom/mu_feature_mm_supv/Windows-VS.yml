@@ -1,8 +1,5 @@
 ## @file
-# Azure Pipeline build file for a build using Ubuntu and CLANGPDB.
-#
-# IMPORTANT: This file requires the local repo to contain a .azurepipelines/Matrix-Build-Job-Clang.yml file that
-#            performs the actual build steps for the configurations and packages supported by the repo.
+# Azure Pipeline build file for a build using Windows and Visual Studio.
 #
 # NOTE: This file is automatically synchronized from Mu DevOps. Update the original file there
 #       instead of the file in this repo.
@@ -14,7 +11,7 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
-{% import '../Version.njk' as sync_version -%}
+{% import '../../../Version.njk' as sync_version -%}
 
 resources:
   repositories:
@@ -26,15 +23,16 @@ resources:
 
 variables:
 - group: architectures-x86-64
-- group: tool-chain-clangpdb
-- group: tool-chain-clangpdb-windows-vm-image
+- group: tool-chain-windows-visual-studio-latest
 
 jobs:
-- template: Matrix-Build-Job-Clang.yml
+- template: Jobs/PrGate.yml@mu_devops
   parameters:
     arch_list: $(arch_list)
-    extra_steps:
-      - script: sudo apt-get install mingw-w64
-        displayName: Install Windows Resource Compiler for Linux
+    do_ci_build: true
+    do_ci_setup: false
+    do_pr_eval: false
+    packages: MmSupervisorPkg
+    target_list: DEBUG,RELEASE,NO-TARGET,NOOPT
     tool_chain_tag: $(tool_chain_tag)
     vm_image: $(vm_image)
