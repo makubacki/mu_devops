@@ -50,15 +50,15 @@ group:
   #     makubacki/mu_feature_ipmi
 
 # Azure Pipelines - Custom - makubacki/mu_feature_mm_supv
-  - files:
-    - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      makubacki/mu_feature_mm_supv
+  # - files:
+  #   - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Ubuntu-GCC5.yml
+  #     dest: .azurepipelines/Ubuntu-GCC5.yml
+  #     template: true
+  #   - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Windows-VS.yml
+  #     dest: .azurepipelines/Windows-VS.yml
+  #     template: true
+  #   repos: |
+  #     makubacki/mu_feature_mm_supv
 
 # Azure Pipelines - Custom - makubacki/mu_oem_sample
   # - files:
@@ -72,15 +72,15 @@ group:
   #     makubacki/mu_oem_sample
 
 # Azure Pipelines - Custom - makubacki/mu_tiano_platforms
-  - files:
-    - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      makubacki/mu_tiano_platforms
+  # - files:
+  #   - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Ubuntu-GCC5.yml
+  #     dest: .azurepipelines/Ubuntu-GCC5.yml
+  #     template: true
+  #   - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Windows-VS.yml
+  #     dest: .azurepipelines/Windows-VS.yml
+  #     template: true
+  #   repos: |
+  #     makubacki/mu_tiano_platforms
 
 # Azure Pipelines - Matrix Dependent - All
   - files:
@@ -100,15 +100,15 @@ group:
       makubacki/mu_tiano_plus
 
 # Azure Pipelines - Matrix Dependent - GCC & VS Only
-  - files:
-    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      makubacki/mu_plus
+  # - files:
+  #   - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
+  #     dest: .azurepipelines/Ubuntu-GCC5.yml
+  #     template: true
+  #   - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
+  #     dest: .azurepipelines/Windows-VS.yml
+  #     template: true
+  #   repos: |
+  #     makubacki/mu_plus
 
 # CI Configuration - Markdown Lint
   - files:
@@ -122,14 +122,14 @@ group:
     repos: |
       makubacki/mu_tiano_plus
 
-  - files:
-    - source: .sync/ci_config/.markdownlint.yaml
-      dest: .markdownlint.yaml
-      template:
-        allowed_elements:
-          - br
-    repos: |
-      makubacki/mu_plus
+  # - files:
+  #   - source: .sync/ci_config/.markdownlint.yaml
+  #     dest: .markdownlint.yaml
+  #     template:
+  #       allowed_elements:
+  #         - br
+  #   repos: |
+  #     makubacki/mu_plus
 
 # dependabot - Track GitHub Actions and PIP Modules
   - files:
