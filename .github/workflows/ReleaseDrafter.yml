@@ -9,10 +9,6 @@
 # Project Mu repos are encouraged to use this reusable workflow if this release
 # workflow makes sense in their repo.
 #
-# The semantic version version is updated according to the label to semantic version
-# mapping defined in:
-#   - .github/VersionLabelMapping.yml
-#
 # The release draft configuration is defined in:
 #   - .github/ReleaseDraft.yml
 #

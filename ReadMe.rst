@@ -8,7 +8,7 @@ Project MU Developer Operations (DevOps) Repository
    :target: https://github.com/microsoft/mu_devops/releases/latest
 
 .. |Commits Since Last Release| image:: https://img.shields.io/github/commits-since/microsoft/mu_devops/latest/main?include_prereleases
-   :target: https://github.com/makubacki/mu_devops/releases
+   :target: https://github.com/microsoft/mu_devops/releases
 
 .. |Sync Mu DevOps Files to Mu Repos| image:: https://github.com/microsoft/mu_devops/actions/workflows/FileSyncer.yml/badge.svg
    :target: https://github.com/microsoft/mu_devops/actions/workflows/FileSyncer.yml
@@ -24,7 +24,7 @@ Python based code leverages `edk2-pytools` to support cross platform building an
 
 You can find a high-level summary of the latest changes since the last release by viewing the `latest draft release`_.
 
-.. _`latest draft release`: https://github.com/makubacki/mu_devops/releases
+.. _`latest draft release`: https://github.com/microsoft/mu_devops/releases
 
 Continuous Integration (CI)
 ===========================
