@@ -6,6 +6,8 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+# Change for next release
+
 parameters:
 - name: dest_file_path
   displayName: Destination File Path
