@@ -5,6 +5,8 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+# Change for the next release!
+
 parameters:
 - name: extra_parameters
   displayName: Extra Edk2ToolsBuild.py Parameters
