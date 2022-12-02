@@ -2,13 +2,16 @@
 Project MU Developer Operations (DevOps) Repository
 ===================================================
 
-|Latest Mu DevOps Release Version (latest SemVer)| |Sync Mu DevOps Files to Mu Repos|
-
-.. |Sync Mu DevOps Files to Mu Repos| image:: https://github.com/microsoft/mu_devops/actions/workflows/FileSyncer.yml/badge.svg
-   :target: https://github.com/microsoft/mu_devops/actions/workflows/FileSyncer.yml
+|Latest Mu DevOps Release Version (latest SemVer)| |Commits Since Last Release| |Sync Mu DevOps Files to Mu Repos|
 
 .. |Latest Mu DevOps Release Version (latest SemVer)| image:: https://img.shields.io/github/v/release/microsoft/mu_devops?label=Latest%20Release
    :target: https://github.com/microsoft/mu_devops/releases/latest
+
+.. |Commits Since Last Release| image:: https://img.shields.io/github/commits-since/microsoft/mu_devops/latest/main?include_prereleases
+   :target: https://github.com/makubacki/mu_devops/releases
+
+.. |Sync Mu DevOps Files to Mu Repos| image:: https://github.com/microsoft/mu_devops/actions/workflows/FileSyncer.yml/badge.svg
+   :target: https://github.com/microsoft/mu_devops/actions/workflows/FileSyncer.yml
 
 This repository is part of Project Mu.  Please see Project Mu for details https://microsoft.github.io/mu
 
@@ -18,6 +21,10 @@ for other Project Mu repositories.
 Many of these files are generic YAML templates that can be combined together to compose a fully functional pipeline.
 
 Python based code leverages `edk2-pytools` to support cross platform building and execution.
+
+You can find a high-level summary of the latest changes since the last release by viewing the `latest draft release`_.
+
+.. _`latest draft release`: https://github.com/makubacki/mu_devops/releases
 
 Continuous Integration (CI)
 ===========================
