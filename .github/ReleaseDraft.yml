@@ -49,7 +49,7 @@ change-template: >-
         <summary>Change Details</summary>
         <blockquote>
           <!-- Non-breaking space to have content if body is empty -->
-          $nbsp; $BODY
+          &nbsp; $BODY
         </blockquote>
         Pull Request: $URL
         <hr>
