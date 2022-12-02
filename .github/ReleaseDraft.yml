@@ -51,7 +51,6 @@ change-template: >-
           <!-- Non-breaking space to have content if body is empty -->
           &nbsp; $BODY
         </blockquote>
-        Pull Request: $URL
         <hr>
       </details>
     </li>
