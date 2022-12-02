@@ -14,7 +14,8 @@
 ##
 
 # Adding a comment here to test trigger
-
+# Another change
+# Another change
 trigger: none
 
 pr:
