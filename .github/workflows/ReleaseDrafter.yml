@@ -39,6 +39,5 @@ jobs:
         with:
           # Note: Path is relative to .github/
           config-name: ReleaseDraft.yml
-          disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
