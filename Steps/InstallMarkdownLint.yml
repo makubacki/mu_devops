@@ -5,6 +5,8 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+# Fake bug fix
+
 steps:
 
 - script: npm install -g markdownlint-cli@0.31.0
