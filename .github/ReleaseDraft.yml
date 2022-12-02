@@ -76,7 +76,6 @@ version-resolver:
       - 'semver:patch'
       - 'type:bug'
       - 'type:documentation'
-  default: patch
 
 exclude-labels:
   - 'type:dependencies'
