@@ -13,6 +13,8 @@
 #
 ##
 
+# Adding a comment here to test trigger
+
 trigger: none
 
 pr:
