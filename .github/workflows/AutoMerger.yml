@@ -13,9 +13,15 @@ on:
   workflow_call:
 
 jobs:
-  sync:
+  auto_merge:
     name: Merge
     runs-on: ubuntu-latest
+
+    # The action cannot take multiple authors right now, so call with each author
+    # separately.
+    strategy:
+      matrix:
+        author: [ "dependabot[bot]", "uefibot" ]
 
     steps:
       - name: Auto Merge
@@ -23,14 +29,14 @@ jobs:
         uses: pascalgn/automerge-action@v0.15.5
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_FILTER_AUTHOR: "dependabot[bot],uefibot"
+          MERGE_FILTER_AUTHOR: "${{ matrix.author }}"
           MERGE_FORKS: "false"          # dependabot and uefibot come from local repo branches - forks not needed
           MERGE_LABELS: "!state:duplicate,!state:invalid,!state:needs-maintainer-feedback,!state:needs-submitter-info,!state:under-discussion,!state:wont-fix,!type:notes,!type:question"
           MERGE_METHOD: "squash"        # Default merge method squash (instead of "merge")
           MERGE_REMOVE_LABELS: = ""     # Do not remove any labels from a PR after merge
           MERGE_REQUIRED_APPROVALS: "0" # Auto merge these PRs without human reviewers involved (need to pass PR gates)
-          MERGE_RETRIES: "9"            # Check if PR status checks pass up to 9 times
-          MERGE_RETRY_SLEEP: "600000"   # Check if PR status checks are met every 10 mins (9 * 10 = check over 1.5 hrs)
+          MERGE_RETRIES: "18"           # Check if PR status checks pass up to 18 times
+          MERGE_RETRY_SLEEP: "300000"   # Check if PR status checks are met every 10 mins (18 * 5 = check over 1.5 hrs)
           UPDATE_LABELS: ""             # Always update these PRs if needed to merge
           UPDATE_METHOD: "rebase"       # Default PR update method rebase (instead of "merge")
           UPDATE_RETRIES: "2"           # Check if an update is needed up to 2 times
