@@ -23,7 +23,7 @@ jobs:
         uses: pascalgn/automerge-action@v0.15.5
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_FILTER_AUTHOR: "dependabot,uefibot"
+          MERGE_FILTER_AUTHOR: "dependabot[bot],uefibot"
           MERGE_FORKS: "false"          # dependabot and uefibot come from local repo branches - forks not needed
           MERGE_LABELS: "!state:duplicate,!state:invalid,!state:needs-maintainer-feedback,!state:needs-submitter-info,!state:under-discussion,!state:wont-fix,!type:notes,!type:question"
           MERGE_METHOD: "squash"        # Default merge method squash (instead of "merge")
