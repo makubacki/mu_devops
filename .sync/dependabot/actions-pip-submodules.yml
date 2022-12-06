@@ -35,6 +35,8 @@ updates:
       - "type:dependencies"
     reviewers:
       - "microsoft/project-mu-dependency-reviewers"
+    rebase-strategy:
+      "disabled"
 
   - package-ecosystem: "gitsubmodule"
     directory: "/"
@@ -45,6 +47,8 @@ updates:
       - "type:dependencies"
     reviewers:
       - "microsoft/project-mu-dependency-reviewers"
+    rebase-strategy:
+      "disabled"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -57,3 +61,5 @@ updates:
       - "type:dependencies"
     reviewers:
       - "microsoft/project-mu-dependency-reviewers"
+    rebase-strategy:
+      "disabled"
