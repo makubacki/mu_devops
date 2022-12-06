@@ -36,4 +36,4 @@ on:
 
 jobs:
   merge:
-    uses: microsoft/mu_devops/.github/workflows/AutoMerger.yml@main
+    uses: makubacki/mu_devops/.github/workflows/AutoMerger.yml@test_auto_merge_workflow
