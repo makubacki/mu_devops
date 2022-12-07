@@ -41,3 +41,4 @@ jobs:
           UPDATE_METHOD: "rebase"       # Default PR update method rebase (instead of "merge")
           UPDATE_RETRIES: "2"           # Check if an update is needed up to 2 times
           UPDATE_RETRY_SLEEP: "30000"   # Check if an update is needed every 30 secs (2 * 30 = check over ~1 min)
+          LOG: "TRACE"
