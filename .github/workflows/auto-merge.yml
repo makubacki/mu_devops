@@ -37,3 +37,4 @@ on:
 jobs:
   merge:
     uses: makubacki/mu_devops/.github/workflows/AutoMerger.yml@test_auto_merge_workflow
+    secrets: inherit
