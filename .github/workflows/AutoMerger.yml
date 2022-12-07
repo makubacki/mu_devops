@@ -22,9 +22,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+
     steps:
       - uses: hmarr/auto-approve-action@v3
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          review-message: "🤖 auto approved a ${{ github.event.pull_request.user.login }} PR."
+
+      - uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.MAKUBACKI_AUTO_MERGE }}
           review-message: "🤖 auto approved a ${{ github.event.pull_request.user.login }} PR."
 
   auto_merge:
@@ -43,6 +50,7 @@ jobs:
         uses: pascalgn/automerge-action@v0.15.5
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_ERROR_FAIL: "false"     # Do not fail if an auto merge couldn't happen
           MERGE_FILTER_AUTHOR: "${{ matrix.author }}"
           MERGE_FORKS: "false"          # dependabot and uefibot come from local repo branches - forks not needed
           MERGE_LABELS: "!state:duplicate,!state:invalid,!state:needs-maintainer-feedback,!state:needs-submitter-info,!state:under-discussion,!state:wont-fix,!type:notes,!type:question"
