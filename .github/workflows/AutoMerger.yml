@@ -13,6 +13,21 @@ on:
   workflow_call:
 
 jobs:
+  bot_approval:
+    name: Bot Approval
+    if: |
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'opened' &&
+      github.event.issue.pull_request &&
+      (github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'uefibot')
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: hmarr/auto-approve-action@v3
+        with:
+          review-message: "🤖 auto approved a ${{ github.event.pull_request.user.login }} PR."
+
   auto_merge:
     name: Merge
     runs-on: ubuntu-latest
