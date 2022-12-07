@@ -1,1 +1,2 @@
 edk2-pytool-library~=0.12.1 # MU_CHANGE
+edk2-pytool-extensions~=0.17.2
