@@ -42,3 +42,4 @@ jobs:
       ((github.event_name == 'check_suite') &&
        (github.event.check_suite.sender.login == 'dependabot[bot]' || github.event.check_suite.sender.login == 'uefibot'))
     uses: makubacki/mu_devops/.github/workflows/AutoMerger.yml@test_auto_merge_workflow
+    secrets: inherit
