@@ -1,5 +1,5 @@
-# This workflow syncs automatically merges pull requests under
-# certain conditions in Project Mu repos.
+# This workflow automatically merges pull requests under certain
+# conditions in Project Mu repos.
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -31,7 +31,7 @@ jobs:
 
       - uses: hmarr/auto-approve-action@v3
         with:
-          github-token: ${{ secrets.MAKUBACKI_AUTO_MERGE }}
+          github-token: ${{ secrets.PROJECT_MU_BOT_TOKEN }}
           review-message: "🤖 auto approved a ${{ github.event.pull_request.user.login }} PR."
 
   auto_merge:
@@ -56,7 +56,7 @@ jobs:
           MERGE_LABELS: "!state:duplicate,!state:invalid,!state:needs-maintainer-feedback,!state:needs-submitter-info,!state:under-discussion,!state:wont-fix,!type:notes,!type:question"
           MERGE_METHOD: "squash"        # Default merge method squash (instead of "merge")
           MERGE_REMOVE_LABELS: = ""     # Do not remove any labels from a PR after merge
-          MERGE_REQUIRED_APPROVALS: "0" # Auto merge these PRs without human reviewers involved (need to pass PR gates)
+          MERGE_REQUIRED_APPROVALS: "2" # Two PRs can be humans or bots (need to pass PR gates)
           MERGE_RETRIES: "6"            # Check if PR status checks pass up to 6 times
           MERGE_RETRY_SLEEP: "10000"    # Check if PR status checks are met every 10 secs (6 * 10 = check over 1 min)
           UPDATE_LABELS: ""             # Always update these PRs if needed to merge
