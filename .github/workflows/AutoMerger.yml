@@ -16,9 +16,6 @@ jobs:
   bot_approval:
     name: Bot Approval
     continue-on-error: true
-    if: |
-      github.event_name == 'pull_request_target' &&
-      (github.event.action == 'opened' || github.event.action == 'reopened')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
