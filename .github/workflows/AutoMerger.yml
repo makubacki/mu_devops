@@ -47,6 +47,7 @@ jobs:
     steps:
       - name: Auto Merge
         id: auto_merge
+        if: always()
         uses: pascalgn/automerge-action@v0.15.5
         env:
           GITHUB_TOKEN: "${{ secrets.PROJECT_MU_BOT_TOKEN }}"
