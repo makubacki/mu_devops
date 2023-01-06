@@ -15,6 +15,7 @@ on:
 jobs:
   bot_approval:
     name: Bot Approval
+    continue-on-error: true
     if: |
       github.event_name == 'pull_request_target' &&
       (github.event.action == 'opened' || github.event.action == 'reopened') &&
@@ -36,6 +37,8 @@ jobs:
 
   auto_merge:
     name: Merge
+    if: ${{ always() }}
+    needs: bot_approval
     runs-on: ubuntu-latest
 
     # The action cannot take multiple authors right now, so call with each author
@@ -47,7 +50,6 @@ jobs:
     steps:
       - name: Auto Merge
         id: auto_merge
-        if: always()
         uses: pascalgn/automerge-action@v0.15.5
         env:
           GITHUB_TOKEN: "${{ secrets.PROJECT_MU_BOT_TOKEN }}"
