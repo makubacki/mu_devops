@@ -13,28 +13,8 @@ on:
   workflow_call:
 
 jobs:
-  bot_approval:
-    name: Bot Approval
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-
-    steps:
-      - uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          review-message: "🤖 auto approved a ${{ github.event.pull_request.user.login }} PR."
-
-      - uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.PROJECT_MU_BOT_TOKEN }}
-          review-message: "🤖 auto approved a ${{ github.event.pull_request.user.login }} PR."
-
-  auto_merge:
+  bot_merge:
     name: Merge
-    needs: bot_approval
-    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     # The action cannot take multiple authors right now, so call with each author
@@ -55,7 +35,6 @@ jobs:
           MERGE_LABELS: "!state:duplicate,!state:invalid,!state:needs-maintainer-feedback,!state:needs-submitter-info,!state:under-discussion,!state:wont-fix,!type:notes,!type:question"
           MERGE_METHOD: "squash"        # Default merge method squash (instead of "merge")
           MERGE_REMOVE_LABELS: = ""     # Do not remove any labels from a PR after merge
-          MERGE_REQUIRED_APPROVALS: "2" # Two PRs can be humans or bots (need to pass PR gates)
           MERGE_RETRIES: "6"            # Check if PR status checks pass up to 6 times
           MERGE_RETRY_SLEEP: "10000"    # Check if PR status checks are met every 10 secs (6 * 10 = check over 1 min)
           UPDATE_LABELS: ""             # Always update these PRs if needed to merge
