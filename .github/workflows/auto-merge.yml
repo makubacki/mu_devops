@@ -25,5 +25,5 @@ jobs:
     if: |
       github.event_name == 'pull_request_target' &&
         (github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'uefibot')
-    uses: makubacki/mu_devops/.github/workflows/AutoApprover.yml@test_auto_merge_adjustments
+    uses: makubacki/mu_devops/.github/workflows/AutoMerger.yml@test_auto_merge_adjustments
     secrets: inherit
