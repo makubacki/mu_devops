@@ -20,6 +20,7 @@ on:
     types:
       - opened
       - reopened
+      - synchronize
 jobs:
   merge_check:
     if: |
