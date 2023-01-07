@@ -16,17 +16,14 @@
 name: Auto Merge Pull Request
 
 on:
-  check_suite:
+  pull_request_target:
     types:
-      - completed
-  status: {}
-
+      - opened
+      - reopened
 jobs:
   merge_check:
     if: |
-      (github.event_name == 'status' && (github.actor == 'dependabot[bot]' || github.actor == 'uefibot')) ||
-      (github.event_name == 'check_suite' && github.event.check_suite.pull_requests != '[]' &&
-        (github.event.check_suite.pull_requests[0].pull_request.user.login == 'dependabot[bot]' ||
-         github.event.check_suite.pull_requests[0].pull_request.user.login == 'uefibot'))
-    uses: makubacki/mu_devops/.github/workflows/AutoMerger.yml@test_auto_merge_adjustments
+      github.event_name == 'pull_request_target' &&
+        (github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'uefibot')
+    uses: makubacki/mu_devops/.github/workflows/AutoApprover.yml@test_auto_merge_adjustments
     secrets: inherit
