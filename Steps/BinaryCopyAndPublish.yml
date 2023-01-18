@@ -10,6 +10,10 @@
   displayName: Binary Artifacts to Publish
   type: string
   default: ''
+- name: artifacts_identifier
+  displayName: Artifacts Identifier
+  type: string
+  default: 'Artifacts'
 
 # Copy binaries to the artifact staging directory
 - task: CopyFiles@2
@@ -28,5 +32,5 @@
   displayName: Publish Build Binaries
   inputs:
     pathtoPublish: "$(Build.ArtifactStagingDirectory)/Binaries"
-    artifactName: "Binaries $(System.JobName)"
+    artifactName: "Binaries ${{ parameters.artifacts_identifier }}"
   condition: and(succeededOrFailed(), ne('${{ parameters.artifacts_binary }}', ''))

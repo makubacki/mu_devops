@@ -6,93 +6,141 @@
 ##
 
 parameters:
-# These steps should place the files to publish in the
-# "$(Build.StagingDirectory)/Nuget/"" directory.
-- name: artifact_download_steps
-  displayName: Build Artifact Download Step List
-  type: stepList
-  default:
-    - script: echo Using default build artifact download steps
-
-    # The default steps download the binary build artifacts for the current build
-    # (as opposed to a "tagged" build or other lookup mechanism for locating specific artifacts)
-    - task: DownloadBuildArtifacts@0
-      name: DownloadBinaryBuildArtifacts
-      displayName: Download Binary File Artifacts
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'Binaries $(package) $(target)'
-        downloadPath: '$(Build.StagingDirectory)/Nuget/$(package)_$(target)'
-
-    - task: CopyFiles@2
-      displayName: "Copy Binaries to Staged Nuget Package"
-      inputs:
-        SourceFolder: '$(Build.StagingDirectory)/Nuget/$(package)_$(target)/Binaries $(package) $(target)'
-        targetFolder: '$(Build.StagingDirectory)/Nuget/$(package)_$(target)/package_contents'
-        contents: '**'
-        flattenFolders: true
-
-# These steps are run just after artifact_download_steps
-# They can be used to make any final adjustments to the NuGet
-# package contents before they are published.
+- name: artifacts_identifier
+  displayName: Artifacts Identifier
+  type: string
+  default: 'Artifacts'
 - name: custom_nuget_prep_step_list
   displayName: Custom NuGet Package Step List
   type: stepList
   default:
     - script: echo No custom NuGet prep steps provided
+- name: include_binaries
+  displayName: Include build binaries in the Nuget package
+  type: boolean
+  default: true
+- name: include_logs
+  displayName: Include build logs in the Nuget package
+  type: boolean
+  default: false
+- name: include_other
+  displayName: Include other build artifacts in the Nuget package
+  type: boolean
+  default: false
 
-- name: package_list
-  displayName: Packages to Publish
+#
+# Nuget Package Configuration Data
+#
+
+# The package config file path is relative to the source code workspace root directory.
+- name: nuget_package_config_file_path
+  displayName: Nuget Package Config File Path
   type: string
   default: ''
 
-- name: target_list
-  displayName: Targets (e.g. DEBUG, RELEASE)
+# The package version should always be specified and accurate.
+- name: nuget_package_version
+  displayName: Nuget Package Version
   type: string
   default: ''
 
-jobs:
+variables:
+- name: artifacts_identifier_path
+  value: ${{ replace(parameters.artifacts_identifier, ' ', '_') }}
+- name: include_binaries
+  value: ${{ parameters.include_binaries }}
+- name: include_logs
+  value: ${{ parameters.include_logs }}
+- name: include_other
+  value: ${{ parameters.include_other }}
 
-  - template: ../Jobs/CreateBuildMatrix.yml
-    parameters:
-      individual_package_list: '${{ parameters.package_list }}'
-      target_list: ${{ parameters.target_list }}
+#
+# Binary Artifact Download
+#
+# The default steps download the binary build artifacts for the current build
+# (as opposed to a "tagged" build or other lookup mechanism for locating specific artifacts)
+- task: DownloadBuildArtifacts@0
+  name: DownloadBinaryBuildArtifacts
+  displayName: Download Binary Artifacts
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'Binaries ${{ parameters.artifacts_identifier }}'
+    downloadPath: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)'
+  condition: eq(variables['include_binaries'], 'true')
 
-  - job: DownloadAndPublishBinaryArtifactsToNuget
-    displayName: Download & Publish Binary Artifacts to Nuget
-    dependsOn: CreateBuildMatrix
+- task: CopyFiles@2
+  displayName: "Copy Binaries to Staged Nuget Package"
+  inputs:
+    SourceFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/Binaries ${{ parameters.artifacts_identifier }}'
+    targetFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/package_contents/binaries'
+    contents: '**'
+    flattenFolders: true
+  condition: and(succeeded(), eq(variables['include_binaries'], 'true'))
 
-    strategy:
-      matrix: $[ dependencies.CreateBuildMatrix.outputs['CalculateMatrix.Matrix'] ]
+#
+# Log Artifact Download
+#
+# The default steps download the log build artifacts for the current build
+# (as opposed to a "tagged" build or other lookup mechanism for locating specific artifacts)
+- task: DownloadBuildArtifacts@0
+  name: DownloadLogBuildArtifacts
+  displayName: Download Log Artifacts
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'Logs ${{ parameters.artifacts_identifier }}'
+    downloadPath: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)'
+  condition: eq(variables['include_logs'], 'true')
 
-    workspace:
-      clean: all
+- task: CopyFiles@2
+  displayName: "Copy Logs to Staged Nuget Package"
+  inputs:
+    SourceFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/Logs ${{ parameters.artifacts_identifier }}'
+    targetFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/package_contents/logs'
+    contents: '**'
+    flattenFolders: true
+  condition: and(succeeded(), eq(variables['include_logs'], 'true'))
 
-    pool:
-      vmImage: windows-latest
+#
+# Other Artifact Download
+#
+# The default steps download the other build artifacts for the current build
+# (as opposed to a "tagged" build or other lookup mechanism for locating specific artifacts)
+- task: DownloadBuildArtifacts@0
+  name: DownloadOtherBuildArtifacts
+  displayName: Download Other Artifacts
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'Other ${{ parameters.artifacts_identifier }}'
+    downloadPath: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)'
+  condition: eq(variables['include_other'], 'true')
 
-    steps:
-    - checkout: self
-      clean: true
+- task: CopyFiles@2
+  displayName: "Copy Binaries to Staged Nuget Package"
+  inputs:
+    SourceFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/Other ${{ parameters.artifacts_identifier }}'
+    targetFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/package_contents/other'
+    contents: '**'
+    flattenFolders: true
+  condition: and(succeeded(), eq(variables['include_other'], 'true'))
 
-    - template: SetupPythonPreReqs.yml
+# This step provides an opportunity for custom preparation steps to run before publishing
+- ${{ parameters.custom_nuget_prep_step_list }}
 
-    # This step should place the NuGet package contents in $(Build.StagingDirectory)/Nuget/
-    - ${{ parameters.artifact_download_steps }}
+- task: PowerShell@2
+  name: PackAndPublishNugetPackage
+  displayName: Pack and Push Nuget Package (${{ parameters.artifacts_identifier }})
+  env:
+    NUGET_KEY: $(NUGET_KEY)
+  inputs:
+    targetType: 'inline'
+    script: |
+      $apiKey = $($env:NUGET_KEY)
+      $configFilePath = $($env:NUGET_PACKAGE_CONFIG_FILE_PATH);
+      $inputFolderPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/' + $($env:ARTIFACTS_IDENTIFIER_PATH) + '/package_contents';
+      $outputLogPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/NugetPackagingLog.txt';
+      $packageVersion = $($env:NUGET_PACKAGE_VERSION)
 
-    # This step provides an opportunity for custom preparation steps to run before publishing
-    - ${{ parameters.custom_nuget_prep_step_list }}
-
-    - task: PowerShell@2
-      name: PackNugetPackage
-      displayName: Pack and Push $(package)$(optional_project_postfix) $(target) Nuget Package
-      inputs:
-        targetType: 'inline'
-        script: |
-           $configFilePath = $($env:BUILD_SOURCESDIRECTORY) + '/NugetPublishing/' + $($env:PACKAGE) + 'Config' + $(If (![string]::IsNullOrEmpty($($env:OPTIONAL_PROJECT_POSTFIX))) {$($env:OPTIONAL_PROJECT_POSTFIX).Trim().ToUpper()}) + '/' + $($env:TARGET) + 'Config.yaml';
-           $inputFolderPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/' + $($env:PACKAGE) + '_' + $($env:TARGET) + '/package_contents';
-           $outputLogPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/NugetPackagingLog.txt';optional_project_postfix
-           $packageVersion = $($env:VERSION_MAJOR) + '.' + $($env:VERSION_MINOR) + '.' + $($env:VERSION_PATCH) ;
-
-           nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version $packageVersion;
+      nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey";

@@ -6,6 +6,10 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+- name: artifacts_identifier
+  displayName: Artifacts Identifier
+  type: string
+  default: 'Artifacts'
 - name: artifacts_other
   displayName: Other Artifacts to Publish
   type: string
@@ -28,5 +32,5 @@
   displayName: Publish Other Files
   inputs:
     pathtoPublish: "$(Build.ArtifactStagingDirectory)/Other"
-    artifactName: "Other $(System.JobName)"
+    artifactName: "Other ${{ parameters.artifacts_identifier }}"
   condition: and(succeededOrFailed(), ne('${{ parameters.artifacts_other }}', ''))

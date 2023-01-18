@@ -10,6 +10,10 @@ parameters:
   displayName: Binary Artifacts to Publish
   type: string
   default: ''
+- name: artifacts_identifier
+  displayName: Artifacts Identifier
+  type: string
+  default: 'Artifacts'
 - name: artifacts_other
   displayName: Other Artifacts to Publish
   type: string
@@ -166,16 +170,20 @@ steps:
 
 # Copy build logs to the artifact staging directory
 - template: CommonLogCopyAndPublish.yml
+  parameters:
+    artifacts_identifier: ${{ parameters.artifacts_identifier }}
 
 # Copy build binaries to the artifact staging directory
 - template: BinaryCopyAndPublish.yml
   parameters:
     artifacts_binary: ${{ parameters.artifacts_binary }}
+    artifacts_identifier: ${{ parameters.artifacts_identifier }}
 
 # Copy other files to the artifact staging directory
 - template: OtherCopyAndPublish.yml
   parameters:
     artifacts_binary: ${{ parameters.artifacts_other }}
+    artifacts_identifier: ${{ parameters.artifacts_identifier }}
 
 - task: PublishCodeCoverageResults@1
   displayName: Publish Code Coverage Results

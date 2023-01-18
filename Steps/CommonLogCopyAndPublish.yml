@@ -6,6 +6,11 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+- name: artifacts_identifier
+  displayName: Artifacts Identifier
+  type: string
+  default: 'Artifacts'
+
 - task: CopyFiles@2
   displayName: Copy Build Logs
   inputs:
@@ -37,5 +42,5 @@
   displayName: Publish Build Logs
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/Logs'
-    artifactName: 'Logs $(System.JobName)'
+    artifactName: 'Logs ${{ parameters.artifacts_identifier }}'
   condition: succeededOrFailed()
