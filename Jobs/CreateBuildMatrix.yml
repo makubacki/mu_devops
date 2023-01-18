@@ -38,14 +38,6 @@ jobs:
     - checkout: none
 
     - task: PowerShell@2
-      name: DumpEnvironmentVariables
-      displayName: Dump Env. Variables (For Debug Assistance)
-      inputs:
-          targetType: 'inline'
-          script: |
-              Get-ChildItem Env: | Out-String | Write-Host
-
-    - task: PowerShell@2
       name: CalculateMatrix
       displayName: Calculate Matrix
       inputs:
