@@ -136,4 +136,4 @@ steps:
 # Copy other files to the artifact staging directory
 - template: OtherCopyAndPublish.yml
   parameters:
-    artifacts_binary: ${{ parameters.artifacts_other }}
+    artifacts_other: ${{ parameters.artifacts_other }}
