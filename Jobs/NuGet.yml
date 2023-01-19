@@ -129,6 +129,9 @@ variables:
 # This step provides an opportunity for custom preparation steps to run before publishing
 - ${{ parameters.custom_nuget_prep_step_list }}
 
+- task: NuGetAuthenticate@0
+  displayName: Authenticate Local Feed
+
 - task: PowerShell@2
   name: PackAndPublishNugetPackage
   displayName: Pack and Push Nuget Package (${{ parameters.artifacts_identifier }})
