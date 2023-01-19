@@ -100,7 +100,7 @@ jobs:
       parameters:
         artifacts_identifier: '$(package) $(target)'
         build_file: ${{ parameters.build_file }}
-        build_pkgs: $(Build.Pkgs)
+        build_pkgs: $(package)
         build_targets: $(target)
         build_archs: ${{ parameters.arch_list }}
         do_ci_build: ${{ parameters.do_ci_build }}
