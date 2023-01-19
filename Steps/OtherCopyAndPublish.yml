@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+parameters:
 - name: artifacts_identifier
   displayName: Artifacts Identifier
   type: string
