@@ -44,17 +44,18 @@ parameters:
   type: string
   default: ''
 
-variables:
-- name: artifacts_identifier_path
-  value: ${{ replace(parameters.artifacts_identifier, ' ', '_') }}
-- name: include_binaries
-  value: ${{ parameters.include_binaries }}
-- name: include_logs
-  value: ${{ parameters.include_logs }}
-- name: include_other
-  value: ${{ parameters.include_other }}
-
 steps:
+  #
+  #
+  #
+  - task: PowerShell@2
+    name: CreateArtifactsPath
+    displayName: Create Artifacts Path
+    inputs:
+      targetType: 'inline'
+      script: |
+        Write-Host "##vso[task.setvariable variable=artifacts_identifier_path]${{ parameters.artifacts_identifier }} -replace '\s', '_'"
+
   #
   # Binary Artifact Download
   #
@@ -68,7 +69,7 @@ steps:
       downloadType: 'single'
       artifactName: 'Binaries ${{ parameters.artifacts_identifier }}'
       downloadPath: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)'
-    condition: eq(variables['include_binaries'], 'true')
+    condition: eq('${{ parameters.include_binaries }}', 'true')
 
   - task: CopyFiles@2
     displayName: "Copy Binaries to Staged Nuget Package"
@@ -77,7 +78,7 @@ steps:
       targetFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/package_contents/binaries'
       contents: '**'
       flattenFolders: true
-    condition: and(succeeded(), eq(variables['include_binaries'], 'true'))
+    condition: and(succeeded(), eq('${{ parameters.include_binaries }}', 'true'))
 
   #
   # Log Artifact Download
@@ -92,7 +93,7 @@ steps:
       downloadType: 'single'
       artifactName: 'Logs ${{ parameters.artifacts_identifier }}'
       downloadPath: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)'
-    condition: eq(variables['include_logs'], 'true')
+    condition: eq('${{ parameters.include_logs }}', 'true')
 
   - task: CopyFiles@2
     displayName: "Copy Logs to Staged Nuget Package"
@@ -101,7 +102,7 @@ steps:
       targetFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/package_contents/logs'
       contents: '**'
       flattenFolders: true
-    condition: and(succeeded(), eq(variables['include_logs'], 'true'))
+    condition: and(succeeded(), eq('${{ parameters.include_logs }}', 'true'))
 
   #
   # Other Artifact Download
@@ -116,7 +117,7 @@ steps:
       downloadType: 'single'
       artifactName: 'Other ${{ parameters.artifacts_identifier }}'
       downloadPath: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)'
-    condition: eq(variables['include_other'], 'true')
+    condition: eq('${{ parameters.include_other }}', 'true')
 
   - task: CopyFiles@2
     displayName: "Copy Binaries to Staged Nuget Package"
@@ -125,7 +126,7 @@ steps:
       targetFolder: '$(Build.StagingDirectory)/Nuget/$(artifacts_identifier_path)/package_contents/other'
       contents: '**'
       flattenFolders: true
-    condition: and(succeeded(), eq(variables['include_other'], 'true'))
+    condition: and(succeeded(), eq('${{ parameters.include_other }}', 'true'))
 
   # This step provides an opportunity for custom preparation steps to run before publishing
   - ${{ parameters.custom_nuget_prep_step_list }}
