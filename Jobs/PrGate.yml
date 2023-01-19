@@ -101,7 +101,7 @@ jobs:
         artifacts_identifier: '$(package) $(target)'
         build_file: ${{ parameters.build_file }}
         build_pkgs: $(Build.Pkgs)
-        build_targets: $(Build.Targets)
+        build_targets: $(target)
         build_archs: ${{ parameters.arch_list }}
         do_ci_build: ${{ parameters.do_ci_build }}
         do_ci_setup: ${{ parameters.do_ci_setup }}
