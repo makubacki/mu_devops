@@ -16,6 +16,7 @@ parameters:
   type: string
   default: ''
 
+steps:
 # Copy other files to the artifact staging directory
 - task: CopyFiles@2
   displayName: Copy Other Files from Build

@@ -12,6 +12,7 @@ parameters:
   type: string
   default: 'Artifacts'
 
+steps:
 - task: CopyFiles@2
   displayName: Copy Build Logs
   inputs:
