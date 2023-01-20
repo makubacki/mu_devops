@@ -45,16 +45,9 @@ parameters:
   default: ''
 
 steps:
-  #
-  #
-  #
-  - task: PowerShell@2
-    name: CreateArtifactsPath
-    displayName: Create Artifacts Path
-    inputs:
-      targetType: 'inline'
-      script: |
-        Write-Host "##vso[task.setvariable variable=artifacts_identifier_path]${{ parameters.artifacts_identifier }} -replace '\s', '_'"
+  - bash: |
+     ARTIFACTS_IDENTIFIER_PATH=$(echo "${{ parameters.artifacts_identifier }}" | tr " " "_")
+     echo "##vso[task.setvariable variable=artifacts_identifier_path]$ARTIFACTS_IDENTIFIER_PATH"
 
   #
   # Binary Artifact Download
