@@ -26,14 +26,17 @@ jobs:
   repo_cleanup:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Repository Info
+        run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
       - name: Prune Won't Fix Pull Requests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER_REPO: ${{ github.action_repository }}
+          REPOSITORY: ${{ env.REPOSITORY_NAME }}
         run: |
           gh api \
             -H "Accept: application/vnd.github+json" \
-            /repos/$OWNER_REPO/pulls | jq -r '.[]' | jq -rc '.html_url,.labels' | \
+            /repos/makubacki/${REPOSITORY}/pulls | jq -r '.[]' | jq -rc '.html_url,.labels' | \
           while read -r html_url ; do
             read -r labels
             if [[ $labels == *"state:wont-fix"* ]]; then
@@ -44,11 +47,11 @@ jobs:
       - name: Prune Won't Fix Issues
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WNER_REPO: ${{ github.action_repository }}
+          REPOSITORY: ${{ env.REPOSITORY_NAME }}
         run: |
           gh api \
             -H "Accept: application/vnd.github+json" \
-            /repos/$OWNER_REPO/issues | jq -r '.[]' | jq -rc '.html_url,.labels' | \
+            /repos/makubacki/${REPOSITORY}/issues | jq -r '.[]' | jq -rc '.html_url,.labels' | \
           while read -r html_url ; do
             read -r labels
             if [[ $labels == *"state:wont-fix"* ]]; then
