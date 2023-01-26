@@ -10,12 +10,10 @@
 name: Sync Mu DevOps Files to Mu Repos
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/FileSyncer.yml'
-      - '.sync/**'
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # Run every hour - hhttps://crontab.guru/#0_2_*_*_*
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
