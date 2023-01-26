@@ -141,4 +141,4 @@ steps:
         $outputLogPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/NugetPackagingLog.txt';
         $packageVersion = $($env:NUGET_PACKAGE_VERSION)
 
-        nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey";
+        nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey" --LicenseIdentifier BSD2;
