@@ -127,7 +127,7 @@ steps:
   - task: NuGetAuthenticate@0
     displayName: Authenticate Local Feed
 
-  - task: PowerShell@2
+  - task: Bash@3
     name: PackAndPublishNugetPackage
     displayName: Pack and Push Nuget Package (${{ parameters.artifacts_identifier }})
     env:
@@ -135,10 +135,9 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        $apiKey = $($env:NUGET_KEY)
-        $configFilePath = $($env:NUGET_PACKAGE_CONFIG_FILE_PATH);
-        $inputFolderPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/' + $($env:ARTIFACTS_IDENTIFIER_PATH) + '/package_contents';
-        $outputLogPath = $($env:BUILD_STAGINGDIRECTORY) + '/Nuget/NugetPackagingLog.txt';
-        $packageVersion = $($env:NUGET_PACKAGE_VERSION)
-
-        nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey" --LicenseIdentifier BSD2;
+        apiKey=$NUGET_KEY
+        configFilePath=$NUGET_PACKAGE_CONFIG_FILE_PATH
+        inputFolderPath="${BUILD_STAGINGDIRECTORY}/Nuget/${ARTIFACTS_IDENTIFIER_PATH}/package_contents"
+        outputLogPath="${BUILD_STAGINGDIRECTORY}/Nuget/NugetPackagingLog.txt"
+        packageVersion=$NUGET_PACKAGE_VERSION
+        nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey" --LicenseIdentifier BSD2
