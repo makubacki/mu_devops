@@ -152,7 +152,8 @@ steps:
       script: |
         apiKey=$NUGET_KEY
         configFilePath=$NUGET_PACKAGE_CONFIG_FILE_PATH
+        customLicensePath=$LICENSE_FILE_PATH
         inputFolderPath="${BUILD_STAGINGDIRECTORY}/Nuget/${ARTIFACTS_IDENTIFIER_PATH}/package_contents"
         outputLogPath="${BUILD_STAGINGDIRECTORY}/Nuget/NugetPackagingLog.txt"
         packageVersion=$NUGET_PACKAGE_VERSION
-        nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey" --LicenseIdentifier BSD2
+        nuget-publish --Operation PackAndPush --OutputLog "$outputLogPath" --ConfigFilePath "$configFilePath" --InputFolderPath "$inputFolderPath" --Version "$packageVersion" --ApiKey "$apiKey" --CustomLicensePath "$customLicensePath"
