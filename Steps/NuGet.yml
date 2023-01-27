@@ -27,6 +27,10 @@ parameters:
   displayName: Include other build artifacts in the Nuget package
   type: boolean
   default: false
+- name: license_file_path
+  displayName: License File Path (Absolute Path)
+  type: string
+  default: ''
 
 #
 # Nuget Package Configuration Data
@@ -45,6 +49,17 @@ parameters:
   default: ''
 
 steps:
+  - bash: |
+      if [ -z "${{ parameters.license_file_path }}" ]; then
+        echo "##vso[task.logissue type=error;]Missing template parameter \"license_file_path\""
+        echo "##vso[task.complete result=Failed;]"
+      fi
+      if ![ -f "${{ parameters.license_file_path }}" ]; then
+        echo "##vso[task.logissue type=error;]license_file_path does not exist: \"${{ parameters.license_file_path }}\""
+        echo "##vso[task.complete result=Failed;]"
+      fi
+    displayName: Validate License File Path
+
   - bash: |
      ARTIFACTS_IDENTIFIER_PATH=$(echo "${{ parameters.artifacts_identifier }}" | tr " " "_")
      echo "##vso[task.setvariable variable=artifacts_identifier_path]$ARTIFACTS_IDENTIFIER_PATH"
