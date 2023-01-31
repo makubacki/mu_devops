@@ -1,6 +1,9 @@
 ## @file
 # Mu DevOps template file to build and publish Nuget packages.
 #
+# Specify the NuGet feed API key as a secret pipeline variable named
+# "NUGET_KEY" if an API key is used.
+#
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
