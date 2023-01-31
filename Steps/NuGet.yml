@@ -146,7 +146,10 @@ steps:
     name: PackAndPublishNugetPackage
     displayName: Pack and Push Nuget Package (${{ parameters.artifacts_identifier }})
     env:
+      LICENSE_FILE_PATH: ${{ parameters.license_file_path }}
       NUGET_KEY: $(NUGET_KEY)
+      NUGET_PACKAGE_CONFIG_FILE_PATH: ${{ parameters.nuget_package_config_file_path }}
+      NUGET_PACKAGE_VERSION: ${{ parameters.nuget_package_version }}
     inputs:
       targetType: 'inline'
       script: |
