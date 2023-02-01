@@ -12,8 +12,8 @@ name: Sync Mu DevOps Files to Mu Repos
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    # Run every hour - hhttps://crontab.guru/#0_2_*_*_*
-    - cron: '0 2 * * *'
+    # Run every 5 minutes
+    - cron:  '*/5 * * * *'
   workflow_dispatch:
 
 jobs:

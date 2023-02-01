@@ -27,38 +27,38 @@
 #       set up to use the YAML file. The file is simply available for pipelines to be connected
 #       if needed.
 group:
-# Azure Pipelines - Custom - microsoft/mu_feature_config
-  - files:
-    - source: .sync/azure_pipelines/custom/mu_feature_config/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/custom/mu_feature_config/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      microsoft/mu_feature_config
+# # Azure Pipelines - Custom - microsoft/mu_feature_config
+#   - files:
+#     - source: .sync/azure_pipelines/custom/mu_feature_config/Ubuntu-GCC5.yml
+#       dest: .azurepipelines/Ubuntu-GCC5.yml
+#       template: true
+#     - source: .sync/azure_pipelines/custom/mu_feature_config/Windows-VS.yml
+#       dest: .azurepipelines/Windows-VS.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_feature_config
 
-# Azure Pipelines - Custom - microsoft/mu_feature_ipmi
-  - files:
-    - source: .sync/azure_pipelines/custom/mu_feature_ipmi/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/custom/mu_feature_ipmi/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      microsoft/mu_feature_ipmi
+# # Azure Pipelines - Custom - microsoft/mu_feature_ipmi
+#   - files:
+#     - source: .sync/azure_pipelines/custom/mu_feature_ipmi/Ubuntu-GCC5.yml
+#       dest: .azurepipelines/Ubuntu-GCC5.yml
+#       template: true
+#     - source: .sync/azure_pipelines/custom/mu_feature_ipmi/Windows-VS.yml
+#       dest: .azurepipelines/Windows-VS.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_feature_ipmi
 
-# Azure Pipelines - Custom - microsoft/mu_feature_mm_supv
-  - files:
-    - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      microsoft/mu_feature_mm_supv
+# # Azure Pipelines - Custom - microsoft/mu_feature_mm_supv
+#   - files:
+#     - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Ubuntu-GCC5.yml
+#       dest: .azurepipelines/Ubuntu-GCC5.yml
+#       template: true
+#     - source: .sync/azure_pipelines/custom/mu_feature_mm_supv/Windows-VS.yml
+#       dest: .azurepipelines/Windows-VS.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_feature_mm_supv
 
 # Azure Pipelines - Custom - microsoft/mu_oem_sample
   - files:
@@ -69,435 +69,435 @@ group:
       dest: .azurepipelines/Windows-VS.yml
       template: true
     repos: |
-      microsoft/mu_oem_sample
+      makubacki/mu_oem_sample
 
-# Azure Pipelines - Custom - microsoft/mu_tiano_platforms
-  - files:
-    - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      microsoft/mu_tiano_platforms
+# # Azure Pipelines - Custom - microsoft/mu_tiano_platforms
+#   - files:
+#     - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Ubuntu-GCC5.yml
+#       dest: .azurepipelines/Ubuntu-GCC5.yml
+#       template: true
+#     - source: .sync/azure_pipelines/custom/mu_tiano_platforms/Windows-VS.yml
+#       dest: .azurepipelines/Windows-VS.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_tiano_platforms
 
-# Azure Pipelines - Matrix Dependent - All
-  - files:
-    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-CLANGPDB.yml
-      dest: .azurepipelines/Ubuntu-CLANGPDB.yml
-      template: true
-    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/matrix_dependent/Windows-CLANGPDB.yml
-      dest: .azurepipelines/Windows-CLANGPDB.yml
-      template: true
-    - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      microsoft/mu_basecore
+# # Azure Pipelines - Matrix Dependent - All
+#   - files:
+#     - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-CLANGPDB.yml
+#       dest: .azurepipelines/Ubuntu-CLANGPDB.yml
+#       template: true
+#     - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
+#       dest: .azurepipelines/Ubuntu-GCC5.yml
+#       template: true
+#     - source: .sync/azure_pipelines/matrix_dependent/Windows-CLANGPDB.yml
+#       dest: .azurepipelines/Windows-CLANGPDB.yml
+#       template: true
+#     - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
+#       dest: .azurepipelines/Windows-VS.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_basecore
 
-# Azure Pipelines - Matrix Dependent - GCC & VS Only
-  - files:
-    - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
-      dest: .azurepipelines/Ubuntu-GCC5.yml
-      template: true
-    - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
-      dest: .azurepipelines/Windows-VS.yml
-      template: true
-    repos: |
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_feature_dfci
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_plus
+# # Azure Pipelines - Matrix Dependent - GCC & VS Only
+#   - files:
+#     - source: .sync/azure_pipelines/matrix_dependent/Ubuntu-GCC5.yml
+#       dest: .azurepipelines/Ubuntu-GCC5.yml
+#       template: true
+#     - source: .sync/azure_pipelines/matrix_dependent/Windows-VS.yml
+#       dest: .azurepipelines/Windows-VS.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_plus
 
-# Azure Pipelines - Ignored Repos
-#   - microsoft/mu
-#     - Does not build firmware code
-#   - microsoft/mu_crypto_release
-#     - Has a custom release process
-#   - microsoft/mu_devops
-#     - Does not build firmware code
-#   - microsoft/mu_feature_uefi_variable
-#     - Not connected to pipelines yet
+# # Azure Pipelines - Ignored Repos
+# #   - microsoft/mu
+# #     - Does not build firmware code
+# #   - microsoft/mu_crypto_release
+# #     - Has a custom release process
+# #   - microsoft/mu_devops
+# #     - Does not build firmware code
+# #   - microsoft/mu_feature_uefi_variable
+# #     - Not connected to pipelines yet
 
-# CI Configuration - Markdown Lint - Common Settings
-  - files:
-    - source: .sync/ci_config/.markdownlint.yaml
-      dest: .markdownlint.yaml
-      template:
-        allowed_elements:
-          - br
-    repos: |
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # CI Configuration - Markdown Lint - Common Settings
+#   - files:
+#     - source: .sync/ci_config/.markdownlint.yaml
+#       dest: .markdownlint.yaml
+#       template:
+#         allowed_elements:
+#           - br
+#     repos: |
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# CI Configuration - Markdown Lint - Mu Documentation Repo Settings
-  - files:
-    - source: .sync/ci_config/.markdownlint.yaml
-      dest: .markdownlint.yaml
-      template:
-        allowed_elements:
-          - br
-          - center
-          - img
-    repos: |
-      microsoft/mu
+# # CI Configuration - Markdown Lint - Mu Documentation Repo Settings
+#   - files:
+#     - source: .sync/ci_config/.markdownlint.yaml
+#       dest: .markdownlint.yaml
+#       template:
+#         allowed_elements:
+#           - br
+#           - center
+#           - img
+#     repos: |
+#       microsoft/mu
 
-# CI Configuration - Markdown Lint - Mu MM Supervisor Repo Settings
-  - files:
-    - source: .sync/ci_config/.markdownlint.yaml
-      dest: .markdownlint.yaml
-      template:
-        allowed_elements:
-          - br
-          - SmmCategory
-          - PolicyAccessAttribute
-    repos: |
-      microsoft/mu_feature_mm_supv
+# # CI Configuration - Markdown Lint - Mu MM Supervisor Repo Settings
+#   - files:
+#     - source: .sync/ci_config/.markdownlint.yaml
+#       dest: .markdownlint.yaml
+#       template:
+#         allowed_elements:
+#           - br
+#           - SmmCategory
+#           - PolicyAccessAttribute
+#     repos: |
+#       microsoft/mu_feature_mm_supv
 
-# dependabot - Track GitHub Actions and PIP Modules
-  - files:
-    - source: .sync/dependabot/actions-pip.yml
-      dest: .github/dependabot.yml
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_plus
+# # dependabot - Track GitHub Actions and PIP Modules
+#   - files:
+#     - source: .sync/dependabot/actions-pip.yml
+#       dest: .github/dependabot.yml
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_plus
 
-# dependabot - Track GitHub Actions, PIP Modules, and Git Submodules
-  - files:
-    - source: .sync/dependabot/actions-pip-submodules.yml
-      dest: .github/dependabot.yml
-    repos: |
-      microsoft/mu_tiano_platforms
+# # dependabot - Track GitHub Actions, PIP Modules, and Git Submodules
+#   - files:
+#     - source: .sync/dependabot/actions-pip-submodules.yml
+#       dest: .github/dependabot.yml
+#     repos: |
+#       microsoft/mu_tiano_platforms
 
-# GitHub Templates - Contributing
-  - files:
-    - source: .sync/github_templates/contributing/CONTRIBUTING.md
-      dest: CONTRIBUTING.md
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # GitHub Templates - Contributing
+#   - files:
+#     - source: .sync/github_templates/contributing/CONTRIBUTING.md
+#       dest: CONTRIBUTING.md
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# GitHub Templates - Issues
-#
-# Note: This "ISSUE_TEMPLATE" directory is synced as-is
-  - files:
-    - source: .sync/github_templates/ISSUE_TEMPLATE/
-      dest: .github/ISSUE_TEMPLATE/
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # GitHub Templates - Issues
+# #
+# # Note: This "ISSUE_TEMPLATE" directory is synced as-is
+#   - files:
+#     - source: .sync/github_templates/ISSUE_TEMPLATE/
+#       dest: .github/ISSUE_TEMPLATE/
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# GitHub Templates - Licensing - Project Mu License
-  - files:
-    - source: .sync/github_templates/licensing/project_mu_license.txt
-      dest: LICENSE.txt
-    repos: |
-      microsoft/mu
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
+# # GitHub Templates - Licensing - Project Mu License
+#   - files:
+#     - source: .sync/github_templates/licensing/project_mu_license.txt
+#       dest: LICENSE.txt
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_crypto_release
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
 
-# GitHub Templates - Licensing - Project Mu and TianoCore License
-  - files:
-    - source: .sync/github_templates/licensing/project_mu_and_tianocore_license.txt
-      dest: License.txt
-    repos: |
-      microsoft/mu_feature_ipmi
-      microsoft/mu_tiano_platforms
+# # GitHub Templates - Licensing - Project Mu and TianoCore License
+#   - files:
+#     - source: .sync/github_templates/licensing/project_mu_and_tianocore_license.txt
+#       dest: License.txt
+#     repos: |
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_tiano_platforms
 
-# GitHub Templates - Licensing - TianoCore License
-  - files:
-    - source: .sync/github_templates/licensing/tianocore_license.txt
-      dest: License.txt
-    repos: |
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_plus
+# # GitHub Templates - Licensing - TianoCore License
+#   - files:
+#     - source: .sync/github_templates/licensing/tianocore_license.txt
+#       dest: License.txt
+#     repos: |
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Apply Labels
-  - files:
-    - source: .sync/workflows/leaf/label-issues.yml
-      dest: .github/workflows/label-issues.yml
-      template: true
-    - source: .sync/workflows/config/label-issues/file-paths.yml
-      dest: .github/workflows/label-issues/file-paths.yml
-    - source: .sync/workflows/config/label-issues/regex-pull-requests.yml
-      dest: .github/workflows/label-issues/regex-pull-requests.yml
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Apply Labels
+#   - files:
+#     - source: .sync/workflows/leaf/label-issues.yml
+#       dest: .github/workflows/label-issues.yml
+#       template: true
+#     - source: .sync/workflows/config/label-issues/file-paths.yml
+#       dest: .github/workflows/label-issues/file-paths.yml
+#     - source: .sync/workflows/config/label-issues/regex-pull-requests.yml
+#       dest: .github/workflows/label-issues/regex-pull-requests.yml
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Auto Merger
-  - files:
-    - source: .sync/workflows/leaf/auto-merge.yml
-      dest: .github/workflows/auto-merge.yml
-      template: true
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Auto Merger
+#   - files:
+#     - source: .sync/workflows/leaf/auto-merge.yml
+#       dest: .github/workflows/auto-merge.yml
+#       template: true
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Auto Approver
-  - files:
-    - source: .sync/workflows/leaf/auto-approve.yml
-      dest: .github/workflows/auto-approve.yml
-      template: true
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Auto Approver
+#   - files:
+#     - source: .sync/workflows/leaf/auto-approve.yml
+#       dest: .github/workflows/auto-approve.yml
+#       template: true
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Issue Triage
-  - files:
-    - source: .sync/workflows/leaf/triage-issues.yml
-      dest: .github/workflows/triage-issues.yml
-      template: true
-    # Note: This file name (`advanced-issue-labeler.yml`) and path (`/.github/`) is
-    #       not configurable right now. Otherwise, this would get placed in a file
-    #       at `.github/workflows/triage-issues/issue-label-mapping.yml`.
-    - source: .sync/workflows/config/triage-issues/advanced-issue-labeler.yml
-      dest: .github/advanced-issue-labeler.yml
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Issue Triage
+#   - files:
+#     - source: .sync/workflows/leaf/triage-issues.yml
+#       dest: .github/workflows/triage-issues.yml
+#       template: true
+#     # Note: This file name (`advanced-issue-labeler.yml`) and path (`/.github/`) is
+#     #       not configurable right now. Otherwise, this would get placed in a file
+#     #       at `.github/workflows/triage-issues/issue-label-mapping.yml`.
+#     - source: .sync/workflows/config/triage-issues/advanced-issue-labeler.yml
+#       dest: .github/advanced-issue-labeler.yml
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Label Sync
-  - files:
-    - source: .sync/workflows/leaf/label-sync.yml
-      dest: .github/workflows/label-sync.yml
-      template: true
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Label Sync
+#   - files:
+#     - source: .sync/workflows/leaf/label-sync.yml
+#       dest: .github/workflows/label-sync.yml
+#       template: true
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Mark Stale Issues and Pull Requests
-  - files:
-    - source: .sync/workflows/leaf/stale.yml
-      dest: .github/workflows/stale.yml
-      template: true
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Mark Stale Issues and Pull Requests
+#   - files:
+#     - source: .sync/workflows/leaf/stale.yml
+#       dest: .github/workflows/stale.yml
+#       template: true
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Leaf Workflow - Mark Stale Issues and Pull Requests (Mu DevOps Adjustment)
-# Prevents the reusable workflow file from being overwritten by the leaf workflow
-# file in Mu DevOps.
-  - files:
-    - source: .sync/workflows/leaf/stale.yml
-      dest: .github/workflows/stale-leaf.yml
-      template: true
-    repos: |
-      microsoft/mu_devops
+# # Leaf Workflow - Mark Stale Issues and Pull Requests (Mu DevOps Adjustment)
+# # Prevents the reusable workflow file from being overwritten by the leaf workflow
+# # file in Mu DevOps.
+#   - files:
+#     - source: .sync/workflows/leaf/stale.yml
+#       dest: .github/workflows/stale-leaf.yml
+#       template: true
+#     repos: |
+#       microsoft/mu_devops
 
-# Leaf Workflow - Release Draft
-  - files:
-    - source: .sync/workflows/leaf/release-draft.yml
-      dest: .github/workflows/release-draft.yml
-      template:
-        trigger_branch_name: 'main'
-    repos: |
-      microsoft/mu_devops
+# # Leaf Workflow - Release Draft
+#   - files:
+#     - source: .sync/workflows/leaf/release-draft.yml
+#       dest: .github/workflows/release-draft.yml
+#       template:
+#         trigger_branch_name: 'main'
+#     repos: |
+#       microsoft/mu_devops
 
-# Leaf Workflow - Scheduled Maintenance
-# Note: This currently sync to the same repos as the label sync since it is exclusively
-#       performing cleanup based on labels.
-  - files:
-    - source: .sync/workflows/leaf/scheduled-maintenance.yml
-      dest: .github/workflows/scheduled-maintenance.yml
-    repos: |
-      microsoft/mu
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_devops
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Leaf Workflow - Scheduled Maintenance
+# # Note: This currently sync to the same repos as the label sync since it is exclusively
+# #       performing cleanup based on labels.
+#   - files:
+#     - source: .sync/workflows/leaf/scheduled-maintenance.yml
+#       dest: .github/workflows/scheduled-maintenance.yml
+#     repos: |
+#       microsoft/mu
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_devops
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Pull Request Template - Common Template
-  - files:
-    - source: .sync/github_templates/pull_requests/pull_request_template.md
-      dest: .github/pull_request_template.md
-    repos: |
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_mm_supv
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_platforms
-      microsoft/mu_tiano_plus
+# # Pull Request Template - Common Template
+#   - files:
+#     - source: .sync/github_templates/pull_requests/pull_request_template.md
+#       dest: .github/pull_request_template.md
+#     repos: |
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_mm_supv
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_platforms
+#       microsoft/mu_tiano_plus
 
-# Development Container - Common for CI based repos
-  - files:
-    - source: .sync/devcontainer/devcontainer.json
-      dest: .devcontainer/devcontainer.json
-    repos: |
-      microsoft/mu_basecore
-      microsoft/mu_common_intel_min_platform
-      microsoft/mu_crypto_release
-      microsoft/mu_feature_config
-      microsoft/mu_feature_dfci
-      microsoft/mu_feature_ipmi
-      microsoft/mu_feature_uefi_variable
-      microsoft/mu_oem_sample
-      microsoft/mu_plus
-      microsoft/mu_silicon_arm_tiano
-      microsoft/mu_silicon_intel_tiano
-      microsoft/mu_tiano_plus
-      microsoft/mu_feature_mm_supv
+# # Development Container - Common for CI based repos
+#   - files:
+#     - source: .sync/devcontainer/devcontainer.json
+#       dest: .devcontainer/devcontainer.json
+#     repos: |
+#       microsoft/mu_basecore
+#       microsoft/mu_common_intel_min_platform
+#       microsoft/mu_crypto_release
+#       microsoft/mu_feature_config
+#       microsoft/mu_feature_dfci
+#       microsoft/mu_feature_ipmi
+#       microsoft/mu_feature_uefi_variable
+#       microsoft/mu_oem_sample
+#       microsoft/mu_plus
+#       microsoft/mu_silicon_arm_tiano
+#       microsoft/mu_silicon_intel_tiano
+#       microsoft/mu_tiano_plus
+#       microsoft/mu_feature_mm_supv
