@@ -13,6 +13,8 @@
 
 {% import '../../../Version.njk' as sync_version -%}
 
+# Change the file
+
 resources:
   repositories:
     - repository: mu_devops
