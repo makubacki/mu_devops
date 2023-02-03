@@ -42,8 +42,7 @@ group:
   - files:
     - source: .sync/workflows/leaf/release-draft.yml
       dest: .github/workflows/release-draft.yml
-      template:
-        trigger_branch_name: '{{ latest_mu_release_branch }}'
+      template: true
     - source: .sync/workflows/config/release-draft/release-draft-config.yml
       dest: .github/release-draft-config.yml
     repos: |
