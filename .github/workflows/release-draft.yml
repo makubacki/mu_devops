@@ -27,5 +27,4 @@ on:
 
 jobs:
   draft:
-    uses: makubacki/mu_devops/.github/workflows/ReleaseDrafter.yml@test_sync_release_drafter_config_file
-    secrets: inherit
+    uses: microsoft/mu_devops/.github/workflows/ReleaseDrafter.yml@v1.7.4
