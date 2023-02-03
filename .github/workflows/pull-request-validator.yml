@@ -1,0 +1,61 @@
+# This workflow validates basic pull request formatting requirements are met.
+#
+# NOTE: This file is automatically synchronized from Mu DevOps. Update the original file there
+#       instead of the file in this repo.
+#
+# - Mu DevOps Repo: https://github.com/microsoft/mu_devops
+# - File Sync Settings: https://github.com/microsoft/mu_devops/blob/main/.sync/Files.yml
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+
+name: Validate Pull Requests
+
+on:
+  pull_request_target:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  validate_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          prData="$(gh api graphql -F owner=$OWNER -F name=$REPO -F pr_number=$PR_NUMBER -f query='
+            query($name: String!, $owner: String!, $pr_number: Int!) {
+              repository(owner: $owner, name: $name) {
+                pullRequest(number: $pr_number) {
+                  body
+                  title
+                }
+              }
+            }')"
+
+          if [[ $($prData | jq 'data.repository.pullRequest.title') == *"Personal/"* ]]; then
+            gh pr comment $PR_URL --body "⚠️ Please add a meaningful PR title (remove the 'Personal/' prefix from the title)."
+            echo 'VALIDATION_ERROR=true' >> $GITHUB_ENV
+          fi
+
+          # Simple check for Signed-off-by presence in PR description
+          # This is meant to be a gentle reminder rather than a stringent enforcement of the format against a regex
+          if [[ $($prData | jq 'data.repository.pullRequest.body') != *"Signed-off-by:"* ]]; then
+            gh pr comment $PR_URL --body "⚠️ Add `Signed-off-by: Name <Email>` to the end of the PR description."
+            echo 'VALIDATION_ERROR=true' >> $GITHUB_ENV
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          PR_NUMBER: ${{ github.event.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          REPO: ${{ github.event.repository.name }}
+
+      - name: Check for Validation Errors
+        if: env.VALIDATION_ERROR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('PR Validation Check Failed!')
