@@ -31,10 +31,10 @@ group:
   - files:
     - source: .sync/workflows/leaf/release-draft.yml
       dest: .github/workflows/release-draft.yml
-    - source: .sync/workflows/config/release-draft/release-draft-config.yml
-      dest: .github/release-draft-config.yml
       template:
         trigger_branch_name: 'main'
+    - source: .sync/workflows/config/release-draft/release-draft-config.yml
+      dest: .github/release-draft-config.yml
     repos: |
       makubacki/mu_devops
 
@@ -42,9 +42,9 @@ group:
   - files:
     - source: .sync/workflows/leaf/release-draft.yml
       dest: .github/workflows/release-draft.yml
-    - source: .sync/workflows/config/release-draft/release-draft-config.yml
-      dest: .github/release-draft-config.yml
       template:
         trigger_branch_name: '{{ latest_mu_release_branch }}'
+    - source: .sync/workflows/config/release-draft/release-draft-config.yml
+      dest: .github/release-draft-config.yml
     repos: |
       makubacki/mu_crypto_release
