@@ -48,7 +48,7 @@ jobs:
 
       - name: Check for Validation Errors
         if: env.VALIDATION_ERROR
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             core.setFailed('PR Validation Check Failed!')
