@@ -18,4 +18,4 @@ on:
 
 jobs:
   apply:
-    uses: makubacki/mu_devops/.github/workflows/IssueAssignment.yml
+    uses: makubacki/mu_devops/.github/workflows/IssueAssignment.yml@test_codeql_workflow_upload_log_artifact_on_failure
