@@ -17,7 +17,7 @@
 # For more information, see:
 # https://github.com/release-drafter/release-drafter
 
-{% import '../../Version.njk' as sync_version -%}
+{% import '../../../Version.njk' as sync_version -%}
 
 name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
