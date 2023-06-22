@@ -27,6 +27,8 @@ Python based code leverages `edk2-pytools` to support cross platform building an
 
 You can find a high-level summary of the latest changes since the last release by viewing the `latest draft release`_.
 
+Temporary change.
+
 .. _`latest draft release`: https://github.com/microsoft/mu_devops/releases
 
 Table of Contents
