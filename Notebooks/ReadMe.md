@@ -25,3 +25,5 @@ To view the file in the Web version of VS Code, simply open the file in GitHub a
 
 Once opened, run the same steps in [How to Use](#how-to-use) to install the extension and view the file. You can then
 save the page to your bookmarks so you can easily load it in the future.
+
+Test update to readme.
