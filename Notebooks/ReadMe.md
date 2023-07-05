@@ -27,3 +27,4 @@ Once opened, run the same steps in [How to Use](#how-to-use) to install the exte
 save the page to your bookmarks so you can easily load it in the future.
 
 Test update to readme.
+Another test update to readme.
