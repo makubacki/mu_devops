@@ -8,7 +8,7 @@
 ##
 
 # NOTE: Because this pipeline YAML file is a Nunjucks template, the pipeline syntax of `{{}}` will conflict with
-#       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `{% raw %}` and `{% endraw %}` tags
+#       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `raw` and `endraw` tags
 #       to allow it to pass through Nunjucks processing.
 
 steps:
