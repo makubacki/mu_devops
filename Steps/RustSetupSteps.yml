@@ -11,6 +11,7 @@
 #       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `raw` and `endraw` tags
 #       to allow it to pass through Nunjucks processing.
 
+
 steps:
 
 - script: |
@@ -43,9 +44,9 @@ steps:
 # those on both Linux and Windows agents for consistency in the pipeline runs.
 #
 - script: |
-    rustup install 1.71.1
-    rustup default 1.71.1
-  displayName: Install Rust 1.71.1 (Windows)
+    rustup install 1.71.2
+    rustup default 1.71.2
+  displayName: Install Rust 1.71.2 (Windows)
   condition: eq(variables['Agent.OS'], 'Windows_NT')
 
 - task: DownloadPipelineArtifact@2
@@ -100,6 +101,6 @@ steps:
   displayName: Copy cargo-tarpaulin
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
-- script: rustup component add rustfmt rust-src --toolchain 1.71.1-x86_64-pc-windows-msvc
+- script: rustup component add rustfmt rust-src --toolchain 1.71.2-x86_64-pc-windows-msvc
   displayName: rustup add rust-src
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
