@@ -48,60 +48,76 @@ steps:
   displayName: Install Rust 1.71.1 (Windows)
   condition: eq(variables['Agent.OS'], 'Windows_NT')
 
-- task: DownloadBuildArtifacts@1
+- script: pip install requests --upgrade
+  displayName: Install and Upgrade pip Modules
+  condition: succeeded()
+
+- task: PythonScript@0
   displayName: Download Cargo Make (Windows)
+  env:
+    ARTIFACT_NAME: Binaries
+    AZURE_ORG_NAME: projectmu
+    AZURE_PROJ_NAME: mu
+    AZURE_PIPELINE_DEF_ID: 166
+    FILE_PATTERN: "**/cargo-make.exe"
+    TARGET_DIR: "$(cargoBinPath)"
+    WORK_DIR: "$(Agent.TempDirectory)"
   inputs:
-    buildType: specific
-    project: mu
-    pipeline: 166
-    buildVersionToDownload: latest
-    downloadType: single
-    artifactName: Binaries
-    itemPattern: '**/cargo-make.exe'
-    downloadPath: '$(cargoBinPath)\'
+    scriptSource: filePath
+    scriptPath: mu_devops/Scripts/DownloadAzurePipelineArtifact/DownloadAzurePipelineArtifact.py
+    workingDirectory: $(Agent.BuildDirectory)
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
 
-- task: DownloadBuildArtifacts@1
+- task: PythonScript@0
   displayName: Download Cargo Make (Linux)
+  env:
+    ARTIFACT_NAME: Binaries
+    AZURE_ORG_NAME: projectmu
+    AZURE_PROJ_NAME: mu
+    AZURE_PIPELINE_DEF_ID: 166
+    FILE_PATTERN: "**/cargo-make"
+    TARGET_DIR: "$(Agent.TempDirectory)"
+    WORK_DIR: "$(Agent.TempDirectory)"
   inputs:
-    buildType: specific
-    project: mu
-    pipeline: 166
-    buildVersionToDownload: latest
-    downloadType: single
-    artifactName: Binaries
-    itemPattern: '**/cargo-make'
-    downloadPath: '$(Agent.TempDirectory)'
+    scriptSource: filePath
+    scriptPath: mu_devops/Scripts/DownloadAzurePipelineArtifact/DownloadAzurePipelineArtifact.py
+    workingDirectory: $(Agent.BuildDirectory)
   condition: eq(variables['Agent.OS'], 'Linux')
 - script: |
     cp $AGENT_TEMPDIRECTORY/cargo-make /.cargo/bin
   displayName: Copy cargo-make
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
-- task: DownloadBuildArtifacts@1
+- task: PythonScript@0
   displayName: Download Cargo Tarpaulin (Windows)
+  env:
+    ARTIFACT_NAME: Binaries
+    AZURE_ORG_NAME: projectmu
+    AZURE_PROJ_NAME: mu
+    AZURE_PIPELINE_DEF_ID: 167
+    FILE_PATTERN: "**/cargo-tarpaulin.exe"
+    TARGET_DIR: "$(cargoBinPath)"
+    WORK_DIR: "$(Agent.TempDirectory)"
   inputs:
-    buildType: specific
-    project: mu
-    pipeline: 167
-    buildVersionToDownload: latest
-    downloadType: single
-    artifactName: Binaries
-    itemPattern: '**/cargo-tarpaulin.exe'
-    downloadPath: '$(cargoBinPath)\'
+    scriptSource: filePath
+    scriptPath: mu_devops/Scripts/DownloadAzurePipelineArtifact/DownloadAzurePipelineArtifact.py
+    workingDirectory: $(Agent.BuildDirectory)
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
 
-- task: DownloadBuildArtifacts@1
+- task: PythonScript@0
   displayName: Download Cargo Tarpaulin (Linux)
+  env:
+    ARTIFACT_NAME: Binaries
+    AZURE_ORG_NAME: projectmu
+    AZURE_PROJ_NAME: mu
+    AZURE_PIPELINE_DEF_ID: 167
+    FILE_PATTERN: "**/cargo-tarpaulin"
+    TARGET_DIR: "$(Agent.TempDirectory)"
+    WORK_DIR: "$(Agent.TempDirectory)"
   inputs:
-    buildType: specific
-    project: mu
-    pipeline: 167
-    buildVersionToDownload: latest
-    downloadType: single
-    artifactName: Binaries
-    itemPattern: '**/cargo-tarpaulin'
-    downloadPath: '$(Agent.TempDirectory)'
+    scriptSource: filePath
+    scriptPath: mu_devopsScripts/DownloadAzurePipelineArtifact/DownloadAzurePipelineArtifact.py
+    workingDirectory: $(Agent.BuildDirectory)
   condition: eq(variables['Agent.OS'], 'Linux')
 - script: |
     cp $AGENT_TEMPDIRECTORY/cargo-tarpaulin /.cargo/bin
