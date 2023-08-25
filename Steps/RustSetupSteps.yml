@@ -48,52 +48,60 @@ steps:
   displayName: Install Rust 1.71.1 (Windows)
   condition: eq(variables['Agent.OS'], 'Windows_NT')
 
-- task: DownloadPipelineArtifact@2
+- task: DownloadBuildArtifacts@1
   displayName: Download Cargo Make (Windows)
   inputs:
     buildType: specific
     project: mu
-    definition: 166
-    targetPath: '$(cargoBinPath)\'
-    itemPattern: '**/cargo-make.exe'
+    pipeline: 166
+    buildVersionToDownload: latest
+    downloadType: single
     artifactName: Binaries
+    itemPattern: '**/cargo-make.exe'
+    downloadPath: '$(cargoBinPath)\'
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
 
-- task: DownloadPipelineArtifact@2
+- task: DownloadBuildArtifacts@1
   displayName: Download Cargo Make (Linux)
   inputs:
     buildType: specific
     project: mu
-    definition: 166
-    targetPath: '$(Agent.TempDirectory)'
-    itemPattern: '**/cargo-make'
+    pipeline: 166
+    buildVersionToDownload: latest
+    downloadType: single
     artifactName: Binaries
+    itemPattern: '**/cargo-make'
+    downloadPath: '$(Agent.TempDirectory)'
   condition: eq(variables['Agent.OS'], 'Linux')
 - script: |
     cp $AGENT_TEMPDIRECTORY/cargo-make /.cargo/bin
   displayName: Copy cargo-make
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
-- task: DownloadPipelineArtifact@2
+- task: DownloadBuildArtifacts@1
   displayName: Download Cargo Tarpaulin (Windows)
   inputs:
     buildType: specific
     project: mu
-    definition: 167
-    targetPath: '$(cargoBinPath)\'
-    itemPattern: '**/cargo-tarpaulin.exe'
+    pipeline: 167
+    buildVersionToDownload: latest
+    downloadType: single
     artifactName: Binaries
+    itemPattern: '**/cargo-tarpaulin.exe'
+    downloadPath: '$(cargoBinPath)\'
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
 
-- task: DownloadPipelineArtifact@2
+- task: DownloadBuildArtifacts@1
   displayName: Download Cargo Tarpaulin (Linux)
   inputs:
     buildType: specific
     project: mu
-    definition: 167
-    targetPath: '$(Agent.TempDirectory)'
-    itemPattern: '**/cargo-tarpaulin'
+    pipeline: 167
+    buildVersionToDownload: latest
+    downloadType: single
     artifactName: Binaries
+    itemPattern: '**/cargo-tarpaulin'
+    downloadPath: '$(Agent.TempDirectory)'
   condition: eq(variables['Agent.OS'], 'Linux')
 - script: |
     cp $AGENT_TEMPDIRECTORY/cargo-tarpaulin /.cargo/bin
