@@ -40,7 +40,7 @@ jobs:
           CONFIG_PATH: .sync/Files.yml
           DRY_RUN: false
           FORK: false
-          GH_PAT: ${{ secrets.UEFI_BOT_REPO_FILE_SYNC }}
+          GH_PAT: ${{ secrets.MAKUBACKI_REPO_FILE_SYNC }}
           GIT_EMAIL: uefibot@microsoft.com
           GIT_USERNAME: uefibot
           ORIGINAL_MESSAGE: true
