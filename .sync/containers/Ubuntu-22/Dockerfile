@@ -11,6 +11,16 @@
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 
+{% import '../Version.njk' as sync_version -%}
+
+{% raw %}
+# NOTE: Because this pipeline YAML file is a Nunjucks template, the pipeline syntax of `{{}}` will conflict with
+#       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `raw` and `endraw` tags
+#       to allow it to pass through Nunjucks processing.
+{% endraw %}
+
+{% raw %}
+
 #
 # The build container layer is intended for pipeline use and is the minimal set
 # of tools required for building Project MU.
@@ -129,10 +139,12 @@ RUN mkdir cargo_downloads && \
 # Alternatives
 #
 
+{% endraw %}
+
 RUN update-alternatives \
-      --install /usr/bin/python python /usr/bin/python3.10 1 && \
+      --install /usr/bin/python python /usr/bin/python{{ sync_version.python_version }} 1 && \
     update-alternatives \
-      --install /usr/bin/python3 python3 /usr/bin/python3.10 1 && \
+      --install /usr/bin/python3 python3 /usr/bin/python{{ sync_version.python_version }} 1 && \
     update-alternatives \
       --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_MAJOR_VERSION} 100 \
       --slave /usr/bin/g++ g++ /usr/bin/g++-${GCC_MAJOR_VERSION} \
@@ -166,6 +178,8 @@ RUN update-alternatives \
       --slave /usr/bin/riscv64-linux-gnu-gcc-nm riscv64-linux-gnu-gcc-nm /usr/bin/riscv64-linux-gnu-gcc-nm-${GCC_MAJOR_VERSION} \
       --slave /usr/bin/riscv64-linux-gnu-gcc-ranlib riscv64-linux-gnu-gcc-ranlib /usr/bin/riscv64-linux-gnu-gcc-ranlib-${GCC_MAJOR_VERSION} \
       --slave /usr/bin/riscv64-linux-gnu-gcov riscv64-linux-gnu-gcov /usr/bin/riscv64-linux-gnu-gcov-${GCC_MAJOR_VERSION}
+
+{% raw %}
 
 #
 # The test container layer is intended for pipeline use and virtual platform tools
@@ -213,3 +227,5 @@ RUN apt-get update && \
         less \
         && \
     apt-get clean
+
+{% endraw %}
