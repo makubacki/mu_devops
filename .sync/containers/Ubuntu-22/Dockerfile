@@ -11,15 +11,12 @@
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 
-{% import '../Version.njk' as sync_version -%}
+{% import '../../Version.njk' as sync_version -%}
 
 {% raw %}
 # NOTE: Because this pipeline YAML file is a Nunjucks template, the pipeline syntax of `{{}}` will conflict with
 #       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `raw` and `endraw` tags
 #       to allow it to pass through Nunjucks processing.
-{% endraw %}
-
-{% raw %}
 
 #
 # The build container layer is intended for pipeline use and is the minimal set
@@ -138,7 +135,6 @@ RUN mkdir cargo_downloads && \
 #
 # Alternatives
 #
-
 {% endraw %}
 
 RUN update-alternatives \
@@ -180,7 +176,6 @@ RUN update-alternatives \
       --slave /usr/bin/riscv64-linux-gnu-gcov riscv64-linux-gnu-gcov /usr/bin/riscv64-linux-gnu-gcov-${GCC_MAJOR_VERSION}
 
 {% raw %}
-
 #
 # The test container layer is intended for pipeline use and virtual platform tools
 # on top of the base build image.
@@ -227,5 +222,4 @@ RUN apt-get update && \
         less \
         && \
     apt-get clean
-
 {% endraw %}

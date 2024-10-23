@@ -17,7 +17,6 @@
 #       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `raw` and `endraw` tags
 #       to allow it to pass through Nunjucks processing.
 {% endraw %}
-
 name: 'Submodule Release Updater'
 
 description: 'Checks if new releases are available for submodules and creates pull requests to update them.'
@@ -42,7 +41,6 @@ outputs:
     description: "Number of submodules updated."
     value: ${{ steps.check-for-submodule-updates.outputs.submodule-update-count }}
 {% endraw %}
-
 runs:
   using: "composite"
 
@@ -440,5 +438,4 @@ runs:
 
         with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
             print(f'submodule-update-count={submodule_update_count}', file=fh)
-
 {% endraw %}
