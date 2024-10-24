@@ -11,6 +11,10 @@
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 
+# NOTE: Because this pipeline YAML file is a Nunjucks template, the pipeline syntax of `{{}}` will conflict with
+#       Nunjucks style. Surround pipeline YAML code that uses `{{}}` within `raw` and `endraw` tags
+#       to allow it to pass through Nunjucks processing.
+
 #
 # The build container layer is intended for pipeline use and is the minimal set
 # of tools required for building Project MU.
@@ -129,10 +133,11 @@ RUN mkdir cargo_downloads && \
 # Alternatives
 #
 
+
 RUN update-alternatives \
-      --install /usr/bin/python python /usr/bin/python3.10 1 && \
+      --install /usr/bin/python python /usr/bin/python3.12 1 && \
     update-alternatives \
-      --install /usr/bin/python3 python3 /usr/bin/python3.10 1 && \
+      --install /usr/bin/python3 python3 /usr/bin/python3.12 1 && \
     update-alternatives \
       --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_MAJOR_VERSION} 100 \
       --slave /usr/bin/g++ g++ /usr/bin/g++-${GCC_MAJOR_VERSION} \
@@ -213,3 +218,4 @@ RUN apt-get update && \
         less \
         && \
     apt-get clean
+
