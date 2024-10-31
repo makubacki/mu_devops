@@ -9,6 +9,7 @@ For details on how to complete these options and their meaning refer to [CONTRIB
 - [ ] Breaking change?
 - [ ] Includes tests?
 - [ ] Includes documentation?
+{{ additional_checkboxes | dump('- [ ] ') }}
 
 ## How This Was Tested
 
