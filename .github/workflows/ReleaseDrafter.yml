@@ -91,26 +91,17 @@ jobs:
         run: |
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          formatted_body=$(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/"/\\"/g')
-          release_exists=$(gh release view "$new_tag" --repo ${{ github.repository }} --json url --jq '.url' 2>/dev/null || true)
+          formatted_body=$(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/\r//g; s/"/\\"/g; s/`/``/g')
+          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
+            gh release delete "$tag" --repo ${{ github.repository }} --yes
+          done
 
-          if [ -n "$release_exists" ]; then
-            # If the release exists, update it
-            gh release edit "$new_tag" \
-              --repo "${{ github.repository }}" \
-              --target "${{ env.latest_mu_release_branch_full }}" \
-              --title "$new_title" \
-              --notes "$formatted_body" \
-              --draft
-          else
-            # If the release doesn't exist, create a new one
-            gh release create "$new_tag" \
-              --repo "${{ github.repository }}" \
-              --target "${{ env.latest_mu_release_branch_full }}" \
-              --title "$new_title" \
-              --notes "$formatted_body" \
-              --draft
-          fi
+          gh release create "$new_tag" \
+            --repo "${{ github.repository }}" \
+            --target "${{ env.latest_mu_release_branch_full }}" \
+            --title "$new_title" \
+            --notes "$formatted_body" \
+            --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build a ${{ env.previous_mu_release_branch }} Draft
@@ -127,26 +118,18 @@ jobs:
         run: |
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          formatted_body=$(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/"/\\"/g')
-          release_exists=$(gh release view "$new_tag" --repo ${{ github.repository }} --json url --jq '.url' 2>/dev/null || true)
+          formatted_body=$(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/\r//g; s/"/\\"/g; s/`/``/g')
+          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
+            gh release delete "$tag" --repo ${{ github.repository }} --yes
+          done
 
-          if [ -n "$release_exists" ]; then
-            # If the release exists, update it
-            gh release edit "$new_tag" \
-              --repo "${{ github.repository }}" \
-              --target "${{ env.previous_mu_release_branch_full }}" \
-              --title "$new_title" \
-              --notes "$formatted_body" \
-              --draft
-          else
-            # If the release doesn't exist, create a new one
-            gh release create "$new_tag" \
-              --repo "${{ github.repository }}" \
-              --target "${{ env.previous_mu_release_branch_full }}" \
-              --title "$new_title" \
-              --notes "$formatted_body" \
-              --draft
-          fi
+          gh release create "$new_tag" \
+            --repo "${{ github.repository }}" \
+            --target "${{ env.previous_mu_release_branch_full }}" \
+            --title "$new_title" \
+            --notes "$formatted_body" \
+            --draft
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the New Release Draft
