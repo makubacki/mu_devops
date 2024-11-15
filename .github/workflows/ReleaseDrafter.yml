@@ -91,7 +91,8 @@ jobs:
         run: |
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          formatted_body=$(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/\r//g; s/"/\\"/g; s/`/``/g')
+          release_body_path=${{ runner.temp }}/release_body.txt
+          echo "${{ steps.update_draft_n.outputs.body }}" > $release_body_path
           for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
@@ -100,7 +101,7 @@ jobs:
             --repo "${{ github.repository }}" \
             --target "${{ env.latest_mu_release_branch_full }}" \
             --title "$new_title" \
-            --notes "$formatted_body" \
+            --notes-file $release_body_path \
             --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -118,7 +119,8 @@ jobs:
         run: |
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          formatted_body=$(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/\r//g; s/"/\\"/g; s/`/``/g')
+          release_body_path=${{ runner.temp }}/release_body.txt
+          echo "${{ steps.update_draft_n.outputs.body }}" > $release_body_path
           for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
@@ -127,7 +129,7 @@ jobs:
             --repo "${{ github.repository }}" \
             --target "${{ env.previous_mu_release_branch_full }}" \
             --title "$new_title" \
-            --notes "$formatted_body" \
+            --notes-file $release_body_path \
             --draft
 
         env:
