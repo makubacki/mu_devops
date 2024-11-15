@@ -92,7 +92,11 @@ jobs:
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
           release_body_path=${{ runner.temp }}/release_body.txt
-          echo "${{ steps.update_draft_n.outputs.body }}" > $release_body_path
+          $body_text = $(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/`/\`/g' | sed 's/\r//g')
+          cat <<EOF > $release_body_path
+          $body_text
+          EOF
+          cat $release_body_path
           for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
