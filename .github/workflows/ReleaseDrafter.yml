@@ -112,7 +112,7 @@ jobs:
           fi
 
           # Delete any existing draft releases
-          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"$tag_prefix\"))) | .tagName'); do
+          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"$existing_tag_prefix\"))) | .tagName'); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
 
