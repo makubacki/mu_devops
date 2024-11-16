@@ -105,14 +105,17 @@ jobs:
 
           # Determine the corresponding tag names
           existing_tag_prefix=""
-          tag_regex="v[0-9]{6}\."
+          tag_regex="(v[0-9]{6}\.)"
+          echo "New tag: $new_tag"
+          echo "Tag regex: $tag_regex"
           if [[ $new_tag =~ $tag_regex ]]; then
-            existing_tag_prefix="${BASH_REMATCH[0]}"
+            echo "Matched tag: ${BASH_REMATCH[1]}"
+            existing_tag_prefix="${BASH_REMATCH[1]}"
             echo "Existing tag prefix: $existing_tag_prefix"
           fi
 
           # Delete any existing draft releases
-          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"$existing_tag_prefix\"))) | .tagName'); do
+          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith("$existing_tag_prefix"))) | .tagName'); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
 
