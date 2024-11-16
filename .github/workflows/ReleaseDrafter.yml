@@ -97,6 +97,7 @@ jobs:
           release_body="${release_body//\`/\\\`}"
           echo "${release_body}" > $release_body_path
           cat $release_body_path
+          sed -i 's/\\`/`/g' $release_body_path
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
           gh release delete "${{ steps.update_draft_n.outputs.tag_name }}" --repo ${{ github.repository }} --yes
