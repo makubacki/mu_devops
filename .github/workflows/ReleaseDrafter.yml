@@ -89,13 +89,19 @@ jobs:
       - name: Draft Release for Current (${{ env.latest_mu_release_branch }}) Release Branch
         if: steps.update_draft_n.outcome == 'success'
         run: |
+          body="${{ steps.update_draft_n.outputs.body }}"
+          release_body_path="${{ runner.temp }}/release_body.txt"
+          python3 -c "
+          import os
+
+          body = os.getenv('body')
+          formatted_body = body.replace('\r\n', '\n').replace('`', '\\`')
+          with open(os.getenv('release_body_path'), 'w') as file:
+              file.write(formatted_body)
+          "
+
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          release_body_path=${{ runner.temp }}/release_body.txt
-          $body_text = $(echo "${{ steps.update_draft_n.outputs.body }}" | sed 's/`/\`/g' | sed 's/\r//g')
-          cat <<EOF > $release_body_path
-          $body_text
-          EOF
           cat $release_body_path
           for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
