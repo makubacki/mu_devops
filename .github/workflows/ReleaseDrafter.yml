@@ -89,28 +89,23 @@ jobs:
       - name: Draft Release for Current (${{ env.latest_mu_release_branch }}) Release Branch
         if: steps.update_draft_n.outcome == 'success'
         run: |
-          # release_body_path="${{ runner.temp }}/release_body.txt"
-          # python3 -c "
-          # import os
-
-          # body = '${{ steps.update_draft_n.outputs.body }}'
-          # formatted_body = body.replace('\r\n', '\n').replace('`', '\\`')
-          # with open(os.getenv('release_body_path'), 'w') as file:
-          #     file.write(formatted_body)
-          # "
-
+          release_body_path="${{ runner.temp }}/release_body.txt"
+          release_body=$(cat <<'EOF'
+          ${{ steps.update_draft_n.outputs.body }}
+          EOF
+          )
+          release_body="${release_body//\`/\\\`}"
+          echo "${release_body}" > $release_body_path
+          cat $release_body_path
           new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
           new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          # cat $release_body_path
-          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
-            gh release delete "$tag" --repo ${{ github.repository }} --yes
-          done
+          gh release delete "${{ steps.update_draft_n.outputs.tag_name }}" --repo ${{ github.repository }} --yes
 
           gh release create "$new_tag" \
             --repo "${{ github.repository }}" \
             --target "${{ env.latest_mu_release_branch_full }}" \
             --title "$new_title" \
-            --notes "${{ steps.update_draft_n.outputs.body }}" \
+            --notes-file "$release_body_path" \
             --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
