@@ -105,17 +105,13 @@ jobs:
 
           # Determine the corresponding tag names
           existing_tag_prefix=""
-          tag_regex="(v[0-9]{6}\.)"
-          echo "New tag: $new_tag"
-          echo "Tag regex: $tag_regex"
+          tag_regex="v([0-9]{6}).*\."
           if [[ $new_tag =~ $tag_regex ]]; then
-            echo "Matched tag: ${BASH_REMATCH[1]}"
             existing_tag_prefix="${BASH_REMATCH[1]}"
-            echo "Existing tag prefix: $existing_tag_prefix"
           fi
 
-          # Delete any existing draft releases
-          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith("$existing_tag_prefix"))) | .tagName'); do
+          # Delete any existing draft releases for this release branch
+          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq ".[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"v$existing_tag_prefix\"))) | .tagName"); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
 
@@ -139,22 +135,38 @@ jobs:
       - name: Draft Release for N-1 (${{ env.previous_mu_release_branch }}) Release Branch
         if: steps.update_draft_n_1.outcome == 'success'
         run: |
-          new_tag=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev-//')
-          new_title=$(echo "${{ steps.update_draft_n.outputs.tag_name }}" | sed 's/dev/release/')
-          release_body_path=${{ runner.temp }}/release_body.txt
-          echo "${{ steps.update_draft_n.outputs.body }}" > $release_body_path
+          # Prepare the release body
+          release_body_path="${{ runner.temp }}/release_body.txt"
+          release_body=$(cat <<'EOF'
+          ${{ steps.update_draft_n_1.outputs.body }}
+          EOF
+          )
+          release_body="${release_body//\`/\\\`}"
+          echo "${release_body}" > $release_body_path
+          sed -i 's/\\`/`/g' $release_body_path
 
-          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq '.[] | select(.isDraft == true and .isPrerelease == false) | .tagName'); do
+          # Get the new tag and title
+          new_tag=$(echo "${{ steps.update_draft_n_1.outputs.tag_name }}" | sed 's/dev-//')
+          new_title=$(echo "${{ steps.update_draft_n_1.outputs.tag_name }}" | sed 's/dev/release/')
+
+          # Determine the corresponding tag names
+          existing_tag_prefix=""
+          tag_regex="v([0-9]{6}).*\."
+          if [[ $new_tag =~ $tag_regex ]]; then
+            existing_tag_prefix="${BASH_REMATCH[1]}"
+          fi
+
+          # Delete any existing draft releases for this release branch
+          for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq ".[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"v$existing_tag_prefix\"))) | .tagName"); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
           done
 
           gh release create "$new_tag" \
             --repo "${{ github.repository }}" \
-            --target "${{ env.previous_mu_release_branch_full }}" \
+            --target "${{ env.latest_mu_release_branch_full }}" \
             --title "$new_title" \
-            --notes-file $release_body_path \
+            --notes-file "$release_body_path" \
             --draft
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the New Release Draft
