@@ -84,6 +84,7 @@ jobs:
         with:
           # Note: Path is relative to .github/
           config-name: release-draft-config-n.yml
+          include-labels: '["type:backport"]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Draft Release for Current (${{ env.latest_mu_release_branch }}) Release Branch
@@ -130,6 +131,7 @@ jobs:
         with:
           # Note: Path is relative to .github/
           config-name: release-draft-config-n-1.yml
+          include-labels: '["type:backport"]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Draft Release for N-1 (${{ env.previous_mu_release_branch }}) Release Branch
