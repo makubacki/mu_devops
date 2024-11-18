@@ -27,11 +27,12 @@ tag-template: 'v$RESOLVED_VERSION'
 {%- if release_branch %}
 {%- set latest_mu_dev_branch = "refs/heads/" + (sync_version.latest_mu_release_branch | replace("release", "dev")) %}
 {%- set previous_mu_dev_branch = "refs/heads/" + (sync_version.previous_mu_release_branch | replace("release", "dev")) %}
-{% set actual_branch = latest_mu_dev_branch if latest else previous_mu_dev_branch %}
+{%- set actual_branch = latest_mu_dev_branch if latest else previous_mu_dev_branch %}
 commitish: {{ actual_branch }}
 filter-by-commitish: true
-include-labels: "type:backport"
-latest: {{ latest | string }}
+{% if filter_to_backport %}
+include-labels: ["type:backport"]
+{% endif %}
 {% endif %}
 
 template: |
