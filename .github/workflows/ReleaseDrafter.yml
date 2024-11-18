@@ -72,9 +72,11 @@ jobs:
           previousMuReleaseBranch=$(echo "$fileContent" | grep -oP '(?<=previous_mu_release_branch = ").*(?=")')
           previousMuDevBranch=$(echo "$previousMuReleaseBranch" | sed 's/release/dev/')
           echo "latest_mu_release_branch=${latestMuReleaseBranch}" >> $GITHUB_ENV
+          echo "latest_mu_dev_branch=${latestMuDevBranch}" >> $GITHUB_ENV
           echo "latest_mu_dev_branch_full=refs/heads/${latestMuDevBranch}" >> $GITHUB_ENV
           echo "latest_mu_release_branch_full=refs/heads/${latestMuReleaseBranch}" >> $GITHUB_ENV
           echo "previous_mu_release_branch=${previousMuReleaseBranch}" >> $GITHUB_ENV
+          echo "previous_mu_dev_branch=${latestMuDevBranch}" >> $GITHUB_ENV
           echo "previous_mu_dev_branch_full=refs/heads/${previousMuDevBranch}" >> $GITHUB_ENV
           echo "previous_mu_release_branch_full=refs/heads/${previousMuReleaseBranch}" >> $GITHUB_ENV
       - name: Build a ${{ env.latest_mu_release_branch }} Draft
@@ -84,7 +86,6 @@ jobs:
         with:
           # Note: Path is relative to .github/
           config-name: release-draft-config-n.yml
-          include-labels: '["type:backport"]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Draft Release for Current (${{ env.latest_mu_release_branch }}) Release Branch
@@ -111,6 +112,9 @@ jobs:
             existing_tag_prefix="${BASH_REMATCH[1]}"
           fi
 
+          # Delete the template dev draft created
+          gh release delete "${{ steps.update_draft_n.outputs.tag_name }}" --repo ${{ github.repository }} --yes
+
           # Delete any existing draft releases for this release branch
           for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq ".[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"v$existing_tag_prefix\"))) | .tagName"); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
@@ -131,7 +135,6 @@ jobs:
         with:
           # Note: Path is relative to .github/
           config-name: release-draft-config-n-1.yml
-          include-labels: '["type:backport"]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Draft Release for N-1 (${{ env.previous_mu_release_branch }}) Release Branch
@@ -158,6 +161,9 @@ jobs:
             existing_tag_prefix="${BASH_REMATCH[1]}"
           fi
 
+          # Delete the template dev draft created
+          gh release delete "${{ steps.update_draft_n.outputs.tag_name }}" --repo ${{ github.repository }} --yes
+
           # Delete any existing draft releases for this release branch
           for tag in $(gh release list --repo ${{ github.repository }} --json tagName,isPrerelease,isDraft --jq ".[] | select(.isDraft == true and .isPrerelease == false and (.tagName | startswith(\"v$existing_tag_prefix\"))) | .tagName"); do
             gh release delete "$tag" --repo ${{ github.repository }} --yes
@@ -169,6 +175,15 @@ jobs:
             --title "$new_title" \
             --notes-file "$release_body_path" \
             --draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create the ${{ env.latest_mu_dev_branch }} Draft
+        if: s${{ startsWith(github.ref, env.latest_mu_dev_branch_full) }}
+        id: create_n_dev_draft
+        uses: release-drafter/release-drafter@v6.0.0
+        with:
+          # Note: Path is relative to .github/
+          config-name: release-draft-config-n-dev.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the New Release Draft
