@@ -19,8 +19,13 @@
 
 {% import '../../../Version.njk' as sync_version -%}
 
+{%- if release_branch %}
+name-template: 'dev-v$RESOLVED_VERSION'
+tag-template: 'dev-v$RESOLVED_VERSION'
+{% else %}
 name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
+{% endif %}
 
 {# `release_branch` applies a commitish. `latest` then determines the branch to use. -#}
 {# If a commitish is not specified, then the `github.ref` value is implicitly used. -#}
