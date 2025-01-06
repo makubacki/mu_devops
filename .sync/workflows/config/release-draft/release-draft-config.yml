@@ -45,7 +45,11 @@ template: |
 
   $CHANGES
 
+{%- if release_branch %}
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...dev-v$RESOLVED_VERSION
+{% else %}
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+{% endif %}
 
 categories:
   - title: '⚠️ Breaking Changes'
