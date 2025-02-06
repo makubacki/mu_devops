@@ -12,18 +12,18 @@ name: "Build Containers"
 #
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - ".sync/Version.njk"
-      - "Containers/**/Dockerfile"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - ".sync/Version.njk"
-      - "Containers/**/Dockerfile"
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - ".sync/Version.njk"
+  #     - "Containers/**/Dockerfile"
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - ".sync/Version.njk"
+  #     - "Containers/**/Dockerfile"
 
 jobs:
   build-and-push-image:
@@ -78,7 +78,7 @@ jobs:
         shell: bash
 
       - name: Push
-        if: ${{ github.ref == 'refs/heads/main' && steps.changes.outputs.dockerfile == 'true' }}
+        if: ${{ github.ref == 'refs/heads/container_ci_test' && steps.changes.outputs.dockerfile == 'true' }}
         run: |
           for sub in $SUB_IMAGES; do
             IMG=$(tr '[:upper:]' '[:lower:]' <<< "${REGISTRY}/${REPOSITORY}/${IMAGE_NAME}-${sub}")
