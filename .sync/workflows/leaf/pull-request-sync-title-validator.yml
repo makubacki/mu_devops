@@ -1,0 +1,85 @@
+# This workflow validates that pull requests created by the repo file sync action have a
+# meaningful title instead of the default auto-generated title.
+#
+# NOTE: This file is automatically synchronized from Mu DevOps. Update the original file there
+#       instead of the file in this repo.
+#
+# - Mu DevOps Repo: https://github.com/microsoft/mu_devops
+# - File Sync Settings: https://github.com/microsoft/mu_devops/blob/main/.sync/Files.yml
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+
+name: Validate Sync Pull Request Title
+
+on:
+  pull_request_target:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  validate_sync_pr_title:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.MU_ACCESS_APP_ID }}
+          private-key: ${{ secrets.MU_ACCESS_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Check for Default Sync PR Title
+        id: title-check
+        run: |
+          prTitle="$(gh api graphql -F owner=$OWNER -F name=$REPO -F pr_number=$PR_NUMBER -f query='
+            query($name: String!, $owner: String!, $pr_number: Int!) {
+              repository(owner: $owner, name: $name) {
+                pullRequest(number: $pr_number) {
+                  title
+                }
+              }
+            }' --jq '.data.repository.pullRequest.title')"
+
+          DEFAULT_TITLE="Repo File Sync: synced file(s) with microsoft/mu_devops"
+
+          if [[ "${prTitle}" == "${DEFAULT_TITLE}" ]]; then
+            echo "default_title=true" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          OWNER: ${{ github.repository_owner }}
+          PR_NUMBER: ${{ github.event.number }}
+          REPO: ${{ github.event.repository.name }}
+
+      - name: Post Comment
+        if: steps.title-check.outputs.default_title == 'true'
+        continue-on-error: true
+        run: |
+          COMMENT_MARKER="<!-- sync-title-check -->"
+
+          existing="$(gh api "repos/${OWNER}/${REPO}/issues/${PR_NUMBER}/comments" \
+            --paginate --jq '.[].body' | grep -cF "${COMMENT_MARKER}" || true)"
+
+          if [[ "${existing}" -eq 0 ]]; then
+            gh pr comment "${PR_URL}" --body "${COMMENT_MARKER}
+          ⚠️ This pull request has the default sync title. Please update the title to describe the changes being synced (e.g. what was updated and why)."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          OWNER: ${{ github.repository_owner }}
+          PR_NUMBER: ${{ github.event.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          REPO: ${{ github.event.repository.name }}
+
+      - name: Check for Validation Errors
+        if: steps.title-check.outputs.default_title == 'true'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            core.setFailed('Sync PR Title Validation Check Failed!')
