@@ -494,6 +494,30 @@ group:
       microsoft/mu_rust_pi
       microsoft/mu_tiano_platforms
 
+# Leaf Workflow - Pull Request Sync Title Validator
+  - files:
+    - source: .sync/workflows/leaf/pull-request-sync-title-validator.yml
+      dest: .github/workflows/pull-request-sync-title-validator.yml
+    repos: |
+      microsoft/mu
+      microsoft/mu_basecore
+      microsoft/mu_common_intel_min_platform
+      microsoft/mu_crypto_release
+      microsoft/mu_devops
+      microsoft/mu_feature_config
+      microsoft/mu_feature_debugger
+      microsoft/mu_feature_dfci
+      microsoft/mu_feature_ffa
+      microsoft/mu_feature_ipmi
+      microsoft/mu_feature_mm_supv
+      microsoft/mu_feature_uefi_variable
+      microsoft/mu_oem_sample
+      microsoft/mu_plus
+      microsoft/mu_rust_helpers
+      microsoft/mu_rust_hid
+      microsoft/mu_rust_pi
+      microsoft/mu_tiano_platforms
+
 # Leaf Workflow - Release Draft
 # Note: The branch name used to draft releases on in this group is
 #       set to the value "main"
