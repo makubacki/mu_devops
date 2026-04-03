@@ -6,6 +6,8 @@
     Commit:         [{{mu_devops.commit}}]({{mu_devops.commitlink}})
     Commit Date:    {{mu_devops.date}}
 
+Test change
+
 ## Repository Philosophy
 
 Todo
