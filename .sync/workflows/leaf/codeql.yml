@@ -73,7 +73,7 @@ jobs:
         packages = [d for d in os.listdir() if d.strip().lower().endswith('pkg')]
 
         # Ensure the package can actually be built for the target architectures
-        archs = [a.strip() for a in '{% endraw %}{{ sync_version.archs }}{% raw %}'.split(',')]
+        archs = [a.strip() for a in '{% endraw %}{{ archs }}{% raw %}'.split(',')]
         for package in list(packages):
             dsc = [os.path.join(package, f) for f in os.listdir(package) if f.endswith('.dsc')]
             if not any(arch in l for d in dsc for l in open(d) if 'SUPPORTED_ARCHITECTURES' in l for arch in archs):
@@ -101,7 +101,8 @@ jobs:
       matrix:
         package: ${{ fromJson(needs.gather_packages.outputs.packages) }}
         include:
-          - archs: {% endraw %}{{ sync_version.archs }}{% raw %}
+          - archs: {% endraw %}{{ archs }}{% raw %}
+
           - tool_chain_tag: VS2022
 
     steps:
