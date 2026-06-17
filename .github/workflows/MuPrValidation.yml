@@ -169,8 +169,8 @@ jobs:
       - name: Checkout mu_tiano_platforms
         uses: actions/checkout@v6
         with:
-          ref: main
-          repository: microsoft/mu_tiano_platforms
+          ref: update_swtpm_thread_in_runner
+          repository: makubacki/mu_tiano_platforms
 
       - name: Mark Workspace as Safe for Git
         shell: bash
